@@ -1,5 +1,5 @@
 // login page
-import UserForm from '../components/userForm';
+import UserForm from '../components/UserForm';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
 
@@ -7,7 +7,7 @@ import {useRouter} from 'next/router';
 export default function LoginPage (props) {
 
     const [signup, setSignup] = useState(false);
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('You must login to continue');
     const router = useRouter();
 
     const sumbitHandler = (e, data) => {

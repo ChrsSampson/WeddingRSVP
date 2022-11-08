@@ -1,4 +1,4 @@
-@import './colors.scss','./Home.scss', './UserForm.scss';
+@import './colors.scss','./Home.scss','./Navigation.scss','./UserForm.scss';
 
 // ----Root Styles -------
 
@@ -80,10 +80,16 @@ input[type="text"], input[type="password"], input[type="email"] {
 
 //  ------- global utiliy classes -------
 
-.container-full-centered{
+
+.container-full{
   height:100vh;
+  overflow: hidden
+}
+
+.container-full-centered{
+  @extend .container-full;
   display:grid;
-  place-items: center;;
+  place-items: center;
 }
 
 .form-group{

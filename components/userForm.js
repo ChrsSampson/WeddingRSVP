@@ -20,12 +20,13 @@ export default function UserForm (props) {
     }
 
     function handleSignup (){
-        console.log('This is not allowed')
+        console.log('This is not allowed');
     }
 
     return (
         <form className="UserForm" onSubmit={submitHandler}>
             <h1>{props.signup ? 'Sign Up' : 'Login'}</h1>
+            {props.message ? <p>{props.message}</p> : null}
             <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input

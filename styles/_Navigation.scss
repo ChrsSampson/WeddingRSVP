@@ -1,0 +1,34 @@
+.Navigation{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    ul{
+        display: flex;
+        justify-content: space-around;
+        gap: 2em;
+        width: 50%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li{
+            padding: 1em;
+            font-size: 1.25rem;
+            cursor: pointer;
+
+            a{
+                text-decoration: none;
+                color: darkslategrey;
+
+                &:hover{
+                    text-decoration: underline;
+                    text-decoration-color: $wild-blue-yonder;
+                }
+            }
+
+        }
+
+
+    }
+}

@@ -1,6 +1,7 @@
 // landing page for the app
 
 import Cookies from 'cookies';
+import Navigation from '../../components/Navigation';
 
 export function getServerSideProps (ctx) {
     // check if user is logged in
@@ -29,9 +30,12 @@ export function getServerSideProps (ctx) {
 export default function App (props) {
 
     return (
-        <div>
-            <h1>If you see this you are in</h1>
-            <span>{props.user.firstName} {props.user.lastName}</span>
+        <div className="container">
+            <Navigation user={props.user} />
+            <main className="container-full App">
+                <h1>If you see this you are in</h1>
+                <span>{props.user.firstName} {props.user.lastName}</span>
+            </main>
         </div>
     )
 }
