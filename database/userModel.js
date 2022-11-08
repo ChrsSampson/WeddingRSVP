@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Party'
     },
+    color: {
+        type: String,
+        default: '#fff'
+    },
     role: {
         type: String,
         enum: ['admin', 'user'],
@@ -33,6 +37,11 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function(next) {
+     // generate a random color for the user on user creation
+     if(this.isNew){
+        this.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
     // hash the password before save on creation and update
     if (this.isModified('password') || this.isNew) {
         try {
@@ -44,6 +53,7 @@ userSchema.pre('save', async function(next) {
             next(err);
         }
     }
+
 });
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);

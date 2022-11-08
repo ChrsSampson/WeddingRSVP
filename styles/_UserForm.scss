@@ -1,0 +1,9 @@
+
+.UserForm{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border: 1px solid $wild-blue-yonder;
+    border-radius: .25em;
+    width: 30%;
+}

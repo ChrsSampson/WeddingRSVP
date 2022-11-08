@@ -12,7 +12,10 @@ export default function Home() {
       </Head>
 
       <main className="container">
-        <h1>public Home</h1>
+        <nav>
+          <a href="/app">RSVP</a>
+        </nav>
+        <h2>This Shall be the pretty public page</h2>
       </main>
 
       <footer>

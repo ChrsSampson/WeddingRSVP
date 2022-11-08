@@ -8,10 +8,30 @@ export default function LoginPage (props) {
 
     const [signup, setSignup] = useState(false);
     const [message, setMessage] = useState('');
+    const router = useRouter();
 
     const sumbitHandler = (e, data) => {
         e.preventDefault();
-        console.log('Form Data', data);
+        fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.status !== 200){
+                setMessage(data.error || data.message);
+            } else {
+                router.push('/app')
+            }
+        })
+        .catch(err => {
+            console.error(err)
+            setMessage(err);
+        })
     }
 
     return (

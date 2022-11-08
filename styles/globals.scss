@@ -1,4 +1,6 @@
-@import './colors.scss','./Home.scss';
+@import './colors.scss','./Home.scss', './UserForm.scss';
+
+// ----Root Styles -------
 
 html,
 body {
@@ -6,6 +8,22 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+h1{
+  font-size: 2.25rem;
+}
+h2{
+  font-size: 1.75rem;
+}
+h3{
+  font-size: 1.5rem;
+}
+h4{
+  font-size: 1.25rem;
+}
+h5{
+  font-size: .75rem;
 }
 
 a {
@@ -17,18 +35,60 @@ a {
   box-sizing: border-box;
 }
 
+button[type="submit"] {
+  background-color: $wild-blue-yonder;
+  color: $light-gray;
+  border: none;
+  border-radius: .25em;
+  padding: .25em 1em;
+  font-size: 1.25rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color: $wild-blue-yonder, $amount: 10%);
+  }
+
+  &:active {
+    background-color: darken($color: $wild-blue-yonder, $amount: 20%);
+  }
+}
+
+label{
+  font-size: 1.25rem;
+  margin-bottom: .5em;
+  text-decoration: underline;
+  text-decoration-color: $wild-blue-yonder;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  border: 1px solid $wild-blue-yonder;
+  border-radius: .25em;
+  padding: .25em 1em;
+  font-size: 1.25rem;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: $light-gray;
+    background: $dark-gray;
   }
 }
+
+
+//  ------- global utiliy classes -------
 
 .container-full-centered{
   height:100vh;
   display:grid;
   place-items: center;;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  gap: .25em 0;
+  padding: .5em 0;
 }
