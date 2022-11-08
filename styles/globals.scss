@@ -1,3 +1,5 @@
+@import './colors.scss','./Home.scss';
+
 html,
 body {
   padding: 0;
@@ -23,4 +25,10 @@ a {
     color: white;
     background: black;
   }
+}
+
+.container-full-centered{
+  height:100vh;
+  display:grid;
+  place-items: center;;
 }
