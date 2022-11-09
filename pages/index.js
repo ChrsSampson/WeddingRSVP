@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Navigation from '../components/Navigation'
 
 export default function Home() {
+
+
   return (
     <div className="container">
       <Head>
@@ -11,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container-full Home">
+      <main className="container-full Home fade-in">
         <Navigation />
         <section className="Home-hero">
           <h1 className="Home-title">This is a big deal</h1>

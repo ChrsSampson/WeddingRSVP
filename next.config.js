@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    MONGO_URI:'mongodb://localhost:27017/RSVP'
+    MONGO_URI: process.env.MONGO_URI,
+    SHARED_SECRET:process.env.SHARED_SECRET,
   }
 }
 

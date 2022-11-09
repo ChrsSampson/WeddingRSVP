@@ -1,0 +1,78 @@
+// styles specific to the user bug component
+
+.UserBug{
+    position: absolute;
+    right: 5%;
+    display: grid;
+    place-items: center;
+    gap: .5em;
+    margin-top: 1em;
+    background-color: transparent;
+    border-radius: .25em;
+    overflow: hidden;
+    max-width: min-content;
+    max-height: min-content;
+    transition: all 0.5s;
+    animation: fadeIn;
+
+    &:hover{
+        padding: 1em;
+        background: grey;
+        display: flex;
+        max-height: fit-content;
+        max-width: fit-content;
+        flex-direction: column;
+        border: 2px solid;
+        border-color: inheriet !important;
+        transition: all 0.5s;
+        animation: fadeIn;
+
+        button{
+            opacity: 1;
+            display: block;
+        }
+        .user-name{
+            opacity: 1;
+            display: block;
+        }
+        .user-avatar{
+            font-size: 1rem;
+            margin-right: 1em;
+            transition: font-size 0.5s;
+        }
+        .user-info{
+            display: block;
+        }
+    }
+
+    .user-info{
+        // display:none;
+    }
+
+    .user-avatar{
+        display: inline-flex;
+        font-size: 1.2rem;
+        height: 3em;
+        width: 3em;
+        padding: .5em;
+        vertical-align: middle;
+        border-radius: 50%;
+        transition: font-size 0.5s;
+    }
+
+    .user-name{
+        // display: none;
+        opacity: 0;
+        font-size: 1em;
+        font-weight: 600;
+        color: $light-gray;
+        transition: opacity 1s fadeIn;
+    }
+
+    button{
+        // display: none;
+        opacity: 0;
+    }
+
+}
+

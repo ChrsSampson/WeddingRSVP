@@ -1,8 +1,11 @@
 // component to display basic user info, logout button
 
 import {useRouter} from 'next/router';
+import {useState} from 'react';
 
 export default function UserBug (props) {
+
+    const [showButton, setShowButton] = useState(false);
 
     const router = useRouter();
 
@@ -24,13 +27,44 @@ export default function UserBug (props) {
 
     if(props.user){
         return (
-            <article className="UserBug">
-                <div className="user-info">
-                    <span>{props.user.firstName} {props.user.lastName}</span>
+            <article
+                onMouseEnter={() => setShowButton(true)}
+                onMouseLeave={() => setShowButton(false)}
+                className="UserBug"
+                style={{
+                    borderColor: props.user.color
+                }}
+            >
+                <div
+                    className="user-info"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}
+                >
+                    <span className="user-avatar"
+                        style={{backgroundColor: props.user.color}}
+                    >
+                        <div>{String(props.user.firstName[0]).toUpperCase()} {String(props.user.lastName[0]).toUpperCase()}</div>
+                    </span>
+                    <span
+                        class="user-name"
+                        style={{
+                            maxWidth: `${showButton ? '100%' : '0'}`,
+                        }}
+                    >
+                        {props.user.firstName} {props.user.lastName}
+                    </span>
                 </div>
-                <button onClick={(e) => handleLogout()}>
-                    Logout
-                </button>
+                    <button
+                        style={{
+
+                        }}
+                        className="logout-btn"
+                        onClick={(e) => handleLogout()}
+                    >
+                        Logout
+                    </button>
             </article>
         )
     }

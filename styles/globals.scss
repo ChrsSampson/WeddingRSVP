@@ -1,4 +1,9 @@
-@import './colors.scss','./Home.scss','./Navigation.scss','./UserForm.scss';
+@import './colors.scss',
+        './animations.scss',
+        './Home.scss',
+        './Navigation.scss',
+        './UserBug',
+        './UserForm.scss';
 
 // ----Root Styles -------
 
@@ -35,13 +40,17 @@ a {
   box-sizing: border-box;
 }
 
-button[type="submit"] {
-  background-color: $wild-blue-yonder;
-  color: $light-gray;
+button{
   border: none;
   border-radius: .25em;
   padding: .25em 1em;
   font-size: 1.25rem;
+  background-color: $dark-blue-gray;
+  color: $light-gray;
+}
+
+button[type="submit"] {
+  background-color: $wild-blue-yonder;
   cursor: pointer;
 
   &:hover {
@@ -50,6 +59,18 @@ button[type="submit"] {
 
   &:active {
     background-color: darken($color: $wild-blue-yonder, $amount: 20%);
+  }
+}
+
+.logout-btn{
+  background-color: $rust;
+
+  &:hover {
+    background-color: darken($color: $rust, $amount: 10%);
+  }
+
+  &:active {
+    background-color: darken($color: $rust, $amount: 20%);
   }
 }
 
