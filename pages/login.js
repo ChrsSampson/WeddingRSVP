@@ -6,8 +6,8 @@ import {useRouter} from 'next/router';
 
 export default function LoginPage (props) {
 
-    const [signup, setSignup] = useState(false);
-    const [message, setMessage] = useState('You must login to continue');
+    const [code, enableCode] = useState(true);
+    const [message, setMessage] = useState('Your code is displayed in your invitation');
     const router = useRouter();
 
     const sumbitHandler = (e, data) => {
@@ -21,7 +21,6 @@ export default function LoginPage (props) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if(data.status !== 200){
                 setMessage(data.error || data.message);
             } else {
@@ -37,10 +36,11 @@ export default function LoginPage (props) {
     return (
         <section className="container-full-centered">
             <UserForm
-                signup={signup}
-                setSignup={setSignup}
+                code={code}
+                enableCode={enableCode}
                 submitHandler={sumbitHandler}
                 message={message}
+                setMessage={setMessage}
             />
         </section>
     )

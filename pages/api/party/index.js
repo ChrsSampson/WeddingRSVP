@@ -2,14 +2,13 @@
 
 import Party from '../../../database/partyModel.js';
 import Response from '../../../lib/response.js';
-import connectDB from '../../../database/connection.js';
 
 export default async function handler (req, res) {
     const {method} = req;
 
     async function getAll () {
         try {
-            const parties = await Party.find();
+            const parties = await Party.find({}).populate('users');
             const response = new Response(200, 'success', parties);
             res.status(response.status).json(response);
         } catch (err) {

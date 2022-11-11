@@ -34,6 +34,10 @@ h5{
 a {
   color: inherit;
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 * {
@@ -47,6 +51,12 @@ button{
   font-size: 1.25rem;
   background-color: $dark-blue-gray;
   color: $light-gray;
+
+  &:hover{
+    background-color: darken($dark-blue-gray, 10%);
+
+  }
+
 }
 
 button[type="submit"] {
@@ -81,10 +91,10 @@ label{
   text-decoration-color: $wild-blue-yonder;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], select {
   border: 1px solid $wild-blue-yonder;
   border-radius: .25em;
-  padding: .25em 1em;
+  padding: .25em .2em;
   font-size: 1.25rem;
 }
 
@@ -119,9 +129,27 @@ input[type="text"], input[type="password"], input[type="email"] {
   place-items: center;
 }
 
+.fluid-container{
+  display: flex;
+  align-items:  center;
+  gap: .5em;
+  padding: 1em 0;
+}
+
+.fluid-container-start{
+  @extend .fluid-container;
+  justify-content: flex-start;
+}
+
 .form-group{
   display: flex;
   flex-direction: column;
   gap: .25em 0;
   padding: .5em 0;
+}
+
+.dual-column{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
 }

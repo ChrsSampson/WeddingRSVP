@@ -2,10 +2,8 @@
 
 import Party from '../../../database/partyModel.js';
 import Response from '../../../lib/response.js';
-import connectDB from '../../../database/connection.js';
 
 export default async function handler (req, res) {
-    connectDB();
 
     const {method} = req;
     const id = req.query.id;
@@ -13,10 +11,10 @@ export default async function handler (req, res) {
         // get one party by id
         try {
             // fill users with user info
-            const party = await Party.findById(id)
-            if (!party.populated('users') ) {
-                await party.populate('users')
-            }
+            const party = await Party.findById(id).populate('users');
+            // if (!party.populated('users') ) {
+            //     await party.populate('users')
+            // }
             const response = new Response(200, 'success', party);
             res.status(response.status).json(response);
         } catch (err) {
