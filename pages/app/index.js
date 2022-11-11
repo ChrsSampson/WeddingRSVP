@@ -2,6 +2,8 @@
 
 import Cookies from 'cookies';
 import Navigation from '../../components/Navigation';
+import AdminDashboard from './AdminDashboard';
+import UserDashboard from './UserDashboard';
 
 export function getServerSideProps (ctx) {
     // check if user is logged in
@@ -33,8 +35,10 @@ export default function App (props) {
         <div className="container">
             <Navigation user={props.user} />
             <main className="container-full App">
-                <h1>If you see this you are in</h1>
-                <span>{props.user.firstName} {props.user.lastName}</span>
+                {props.role === "user" ?
+                    <UserDashboard user={props.user} /> :
+                    <AdminDashboard user={props.user} />
+                }
             </main>
         </div>
     )

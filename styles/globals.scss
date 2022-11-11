@@ -101,6 +101,12 @@ input[type="text"], input[type="password"], input[type="email"] {
 
 //  ------- global utiliy classes -------
 
+.container{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
 
 .container-full{
   height:100vh;

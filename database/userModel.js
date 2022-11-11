@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+import Party from './partyModel.js';
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -24,6 +25,16 @@ const userSchema = new mongoose.Schema({
     party: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Party'
+    },
+    foodSelection: {
+        type: String,
+        required: false,
+        default: null
+    },
+    allergies: {
+        type: String,
+        required: false,
+        default: null
     },
     color: {
         type: String,
@@ -54,6 +65,29 @@ userSchema.pre('save', async function(next) {
         }
     }
 
+    if(this.isModified('party') || this.isNew){
+        try {
+            const party = await Party.findById(this.party);
+            party.users.push(this._id);
+            await party.save();
+            next();
+        } catch (err) {
+            next(err);
+        }
+    }
+
+});
+
+
+userSchema.pre('deleteOne', async function(next) {
+    try {
+        const party = await Party.findById(this.party);
+        party.users.pull(this._id);
+        await party.save();
+        next();
+    } catch (err) {
+        next(err);
+    }
 });
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
