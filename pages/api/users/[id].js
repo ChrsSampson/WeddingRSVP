@@ -8,7 +8,7 @@ export default async function handler (req, res) {
     const id = req.query.id;
     if(method === "GET") {
         // get user info
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate('party');
         if (user) {
             const response = new Response(200, 'User found', user);
             res.status(200).json(response);
