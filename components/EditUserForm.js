@@ -4,13 +4,13 @@ import Image from 'next/image';
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
-export default function EditUserForm ({user, backRoute = '/app', handleSubmit}) {
+export default function EditUserForm ({user, backRoute = '/app', handleSubmit, handleDelete}) {
 
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [email, setEmail] = useState(user.email);
-    const [role, setRole] = useState(user.role);
-    const [party, setParty] = useState(user.party);
+    const [firstName, setFirstName] = useState(user.firstName || '');
+    const [lastName, setLastName] = useState(user.lastName || '');
+    const [email, setEmail] = useState(user.email || '');
+    const [role, setRole] = useState(user.role || 'attendee');
+    const [party, setParty] = useState(user.party || null);
     const [parties, setParties] = useState([]);
 
     const router = useRouter();
@@ -35,9 +35,18 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit}) 
     }
 
     return (
-        <div className="container">
-            <h1>Edit User</h1>
-            <form onSubmit={(e) => handleSubmit(e, data)}>
+        <div className="container-full-centered">
+            <div className="fluid-container">
+                <h1>Edit User</h1>
+                <Image
+                    className="user-avatar"
+                    src={`https://avatars.dicebear.com/api/personas/${user.firstName + user.lastName}.svg`}
+                    alt="user avatar"
+                    width={50}
+                    height={50}
+                />
+            </div>
+            <form onSubmit={(e) => handleSubmit(e, data)} className="UserForm">
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
                     <input
@@ -102,6 +111,9 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit}) 
                     <button type="submit">Submit</button>
                     <button className="logout-btn" onClick={() => router.push(backRoute)}>
                         Back
+                    </button>
+                    <button className="danger-btn" onClick={() => handleDelete()}>
+                        Delete
                     </button>
                 </div>
             </form>

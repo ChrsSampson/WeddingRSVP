@@ -59,6 +59,10 @@ button{
 
 }
 
+.btn{
+  @extend button;
+}
+
 button[type="submit"] {
   background-color: $wild-blue-yonder;
   cursor: pointer;
@@ -81,6 +85,19 @@ button[type="submit"] {
 
   &:active {
     background-color: darken($color: $rust, $amount: 20%);
+  }
+}
+
+.danger-btn{
+  @extend .btn;
+  background-color: $red-rust;
+
+  &:hover {
+    background-color: darken($color: $red-rust, $amount: 10%);
+  }
+
+  &:active {
+    background-color: darken($color: $red-rust, $amount: 20%);
   }
 }
 
@@ -152,4 +169,11 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1em;
+}
+
+.toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: .5em 0;
 }

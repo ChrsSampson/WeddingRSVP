@@ -52,10 +52,24 @@ export default function (props) {
         }   
     }
 
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        try{
+            const res = await fetch(`/api/users/${user._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            router.push('/app');
+        }   catch (err) {
+            console.error(err);
+        }   
+    }
 
     return(
         <div className="container">
-            <EditUserForm user={user} backRoute={'/app'} handleSubmit={handleSubmit} />
+            <EditUserForm user={user} backRoute={'/app'} handleSubmit={handleSubmit} handleDelete={handleDelete} />
         </div>
     )
 }

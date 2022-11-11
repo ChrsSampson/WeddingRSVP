@@ -1,6 +1,7 @@
 // navigation bar component
 
 import UserBug from './UserBug';
+import Link from 'next/link';
 
 export default function Navigation (props) {
     return (

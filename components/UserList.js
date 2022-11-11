@@ -6,7 +6,14 @@ import Image from 'next/image';
 export default function UserList ({users}) {
     return (
         <div className="container">
-            <h1>People</h1>
+            <articel className="toolbar">
+                <h1>People</h1>
+                <div className='fluid-container'>
+                    <Link href="/app/users" className='btn'>
+                        Add User
+                    </Link>
+                </div>
+            </articel>
             <table>
                 <thead>
                     <tr>
@@ -29,7 +36,7 @@ export default function UserList ({users}) {
                             <td>{user.party? user.party.code : 'N/A'}</td>
                             <td>{user.role === 'admin' ? 'Organizer' : 'Attendee'}</td>
                             <td>
-                                <Link href={`/app/users/${user._id}`}>
+                                <Link href={`/app/users/${user._id}`} className="btn">
                                     Edit
                                 </Link>
                             </td>
