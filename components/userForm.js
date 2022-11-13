@@ -13,19 +13,11 @@ export default function UserForm (props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        props.submitHandler(e, {
-            email,
-            password
-        })
-    }
-
-    function  signInWithCode (){
-        e.preventDefault();
-        props.submitHandler(e, {
-            firstName,
-            lastName,
-            partyCode
-        })
+        if(props.code){
+            props.submitHandler({ firstName, lastName, inviteCode: partyCode });
+        } else {
+            props.submitHandler({email, password});
+        }
     }
 
     function switchMode (e) {
@@ -40,7 +32,7 @@ export default function UserForm (props) {
 
     // return the Login form
     return (
-        <form className="UserForm" onSubmit={submitHandler}>
+        <form className="UserForm" onSubmit={(e) => submitHandler(e)}>
             <h1>{props.code ? 'RSVP' : 'Login with Email'}</h1>
             {props.message ? <p>{props.message}</p> : null}
             {/* email field */}
@@ -106,10 +98,8 @@ export default function UserForm (props) {
                 </div>
             )}
             <div className="fluid-container">
-                <button type="submit" className="btn btn-primary">
-                    Submit
-                </button>
-                <button className="btn" 
+                <input type="submit" className="btn btn-primary" value="Submit" />
+                <button className="btn"
                     onClick={(e) => switchMode(e)}>
                     {props.code ? 'Login with Email' : 'Login with Code'}
                 </button>

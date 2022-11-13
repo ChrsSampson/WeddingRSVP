@@ -33,6 +33,19 @@ export default async function handler (req, res) {
             const response = new Response(500, err.message, null, err);
             res.status(response.status).json(response);
         }
+    } else if (method === "PATCH") {
+        // add user to party
+        try{
+            const result = await Party.findByIdAndUpdate(id, {$push: {users: req.body.user}}, {new: true});
+            // respond
+            const response = new Response(200, 'success', result);
+            res.status(response.status).json(response);
+        } catch (err) {
+            // respond with error
+            const response = new Response(500, err.message, null, err);
+            res.status(response.status).json(response);
+        }
+
     } else if (method === 'DELETE') {
         // delete one party by id
         try{
@@ -45,5 +58,9 @@ export default async function handler (req, res) {
             const response = new Response(500, 'error', null, err);
             res.status(response.status).json(response);
         }
+    } else {
+        // respond with error
+        const response = new Response(500, 'error', null, 'method not supported');
+        res.status(response.status).json(response);
     }
 }

@@ -10,8 +10,8 @@ export default function LoginPage (props) {
     const [message, setMessage] = useState('Your code is displayed in your invitation');
     const router = useRouter();
 
-    const sumbitHandler = (e, data) => {
-        e.preventDefault();
+    const sumbitHandler = (data) => {
+        console.log(data);
         fetch('/api/auth/login', {
             method: 'POST',
             headers: {
