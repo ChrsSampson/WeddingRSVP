@@ -86,6 +86,37 @@ userSchema.pre('save', async function(next) {
 });
 
 
+userSchema.pre(['updateOne', 'findOneAndUpdate'], async function(next) {
+    try{
+        if (this._update.password && this._update.password.length > 0) {
+            try {
+                // hash user password
+                const salt = await bcrypt.genSalt(10);
+                const hash = await bcrypt.hash(this._update.password, salt);
+                // console.log(this.password, this._update.password, hash);
+                this._update.password = hash;
+                next();
+            } catch (err) {
+                next(err);
+            }
+        }
+
+        // add user to party
+        if(this._update.party){
+            try {
+                const party = await Party.findById(this.party);
+                party.users.push(this._id);
+                await party.save();
+                next();
+            } catch (err) {
+                next(err);
+            }
+        }
+    } catch (err) {
+        next(err);
+    }
+});
+
 userSchema.pre('deleteOne', async function(next) {
     try {
         const party = await Party.findById(this.party);
@@ -96,6 +127,8 @@ userSchema.pre('deleteOne', async function(next) {
         next(err);
     }
 });
+
+
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 

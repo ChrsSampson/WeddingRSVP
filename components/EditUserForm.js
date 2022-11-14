@@ -4,13 +4,15 @@ import Image from 'next/image';
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
-export default function EditUserForm ({user, backRoute = '/app', handleSubmit, handleDelete, create=false, message}) {
+export default function EditUserForm ({user, backRoute, handleSubmit, handleDelete, create=false, message}) {
+
+    // let initparty = user.party._id || null
 
     const [firstName, setFirstName] = useState(user.firstName || '');
     const [lastName, setLastName] = useState(user.lastName || '');
     const [email, setEmail] = useState(user.email || '');
     const [role, setRole] = useState(user.role || 'attendee');
-    const [party, setParty] = useState(user.party._id || null);
+    const [party, setParty] = useState(null);
     const [parties, setParties] = useState([]);
 
     const router = useRouter();
@@ -33,8 +35,7 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit, h
         lastName,
         email,
         role,
-        party,
-        password: ''
+        party
     }
 
     return (
