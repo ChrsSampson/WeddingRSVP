@@ -6,14 +6,14 @@ import Image from 'next/image';
 export default function UserList ({users}) {
     return (
         <div className="container">
-            <articel className="toolbar">
+            <article className="toolbar">
                 <h1>People</h1>
                 <div className='fluid-container'>
                     <Link href="/app/users/new" className='btn'>
                         Add User
                     </Link>
                 </div>
-            </articel>
+            </article>
             <table>
                 <thead>
                     <tr>

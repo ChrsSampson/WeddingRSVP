@@ -89,29 +89,33 @@ userSchema.pre('save', async function(next) {
 userSchema.pre(['updateOne', 'findOneAndUpdate'], async function(next) {
     try{
         if (this._update.password && this._update.password.length > 0) {
-            try {
-                // hash user password
-                const salt = await bcrypt.genSalt(10);
-                const hash = await bcrypt.hash(this._update.password, salt);
-                // console.log(this.password, this._update.password, hash);
-                this._update.password = hash;
-                next();
-            } catch (err) {
-                next(err);
-            }
+            // hash user password
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(this._update.password, salt);
+            this._update.password = hash;
+            next();
         }
 
-        // add user to party
-        if(this._update.party){
-            try {
-                const party = await Party.findById(this.party);
-                party.users.push(this._id);
+    } catch (err) {
+        next(err);
+    }
+});
+
+userSchema.post(['updateOne', 'findOneAndUpdate'], async function(doc, next) {
+    // add user to party
+
+    // get the user id 
+    const partyId = doc.party
+    const userId = doc._id;
+
+    try{
+            const party = await Party.findOne({_id: partyId});
+            // add the user to the party if the user is not already in the party
+            if(party && party.users.indexOf(userId) === -1){
+                party.users.push(userId);
                 await party.save();
-                next();
-            } catch (err) {
-                next(err);
             }
-        }
+            next();
     } catch (err) {
         next(err);
     }
