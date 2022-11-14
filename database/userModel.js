@@ -7,7 +7,7 @@ import Party from './partyModel.js';
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
+        required: false,
         unique: true
     },
     firstName: {
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     party: {
         type: mongoose.Schema.Types.ObjectId,
@@ -32,6 +32,11 @@ const userSchema = new mongoose.Schema({
         default: null
     },
     allergies: {
+        type: String,
+        required: false,
+        default: null
+    },
+    songRequests: {
         type: String,
         required: false,
         default: null
@@ -56,6 +61,7 @@ userSchema.pre('save', async function(next) {
     // hash the password before save on creation and update
     if (this.isModified('password') || this.isNew) {
         try {
+            // hash user password
             const salt = await bcrypt.genSalt(10);
             const hash = await bcrypt.hash(this.password, salt);
             this.password = hash;
@@ -65,6 +71,7 @@ userSchema.pre('save', async function(next) {
         }
     }
 
+    // add user to party
     if(this.isModified('party') || this.isNew){
         try {
             const party = await Party.findById(this.party);

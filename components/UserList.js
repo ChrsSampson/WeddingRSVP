@@ -9,7 +9,7 @@ export default function UserList ({users}) {
             <articel className="toolbar">
                 <h1>People</h1>
                 <div className='fluid-container'>
-                    <Link href="/app/users" className='btn'>
+                    <Link href="/app/users/new" className='btn'>
                         Add User
                     </Link>
                 </div>

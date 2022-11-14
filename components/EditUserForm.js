@@ -4,13 +4,13 @@ import Image from 'next/image';
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
-export default function EditUserForm ({user, backRoute = '/app', handleSubmit, handleDelete}) {
+export default function EditUserForm ({user, backRoute = '/app', handleSubmit, handleDelete, create=false, message}) {
 
     const [firstName, setFirstName] = useState(user.firstName || '');
     const [lastName, setLastName] = useState(user.lastName || '');
     const [email, setEmail] = useState(user.email || '');
     const [role, setRole] = useState(user.role || 'attendee');
-    const [party, setParty] = useState(user.party || null);
+    const [party, setParty] = useState(user.party._id || null);
     const [parties, setParties] = useState([]);
 
     const router = useRouter();
@@ -18,9 +18,10 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit, h
     useEffect(() => {
         // get all parties from the database
         const getParties = async () => {
-            const res = await fetch('/api/parties');
+            const res = await fetch('/api/party');
             const data = await res.json();
-            setParties([...data]);
+            console.log(data);
+            setParties([...data.data]);
         }
 
         getParties();
@@ -31,21 +32,24 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit, h
         firstName,
         lastName,
         email,
-        role
+        role,
+        party,
+        password: ''
     }
 
     return (
         <div className="container-full-centered">
             <div className="fluid-container">
-                <h1>Edit User</h1>
+                {create? <h1>Create User</h1> : <h1>Edit User</h1>}
                 <Image
                     className="user-avatar"
-                    src={`https://avatars.dicebear.com/api/personas/${user.firstName + user.lastName}.svg`}
+                    src={`https://avatars.dicebear.com/api/personas/${create ? firstName + lastName : user.firstName + user.lastName}.svg`}
                     alt="user avatar"
                     width={50}
                     height={50}
                 />
             </div>
+            {message && <span>{message}</span>}
             <form onSubmit={(e) => handleSubmit(e, data)} className="UserForm">
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
@@ -88,8 +92,9 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit, h
                         onChange={(e) => setParty(e.target.value)}
                     >
                         <option value=''>-- Please Select a Party --</option>
+                        <option value="">None</option>
                         {parties.map((party) => (
-                            <option key={party.id} value={party.id}>
+                            <option key={party._id} value={party._id}>
                                 {party.name}
                             </option>
                         ))}
@@ -103,8 +108,8 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit, h
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                     >
-                        <option value="admin">Organizer</option>
                         <option value="user">Attendee</option>
+                        <option value="admin">Organizer</option>
                     </select>
                 </div>
                 <div className="fluid-container">
@@ -112,9 +117,7 @@ export default function EditUserForm ({user, backRoute = '/app', handleSubmit, h
                     <button className="logout-btn" onClick={() => router.push(backRoute)}>
                         Back
                     </button>
-                    <button className="danger-btn" onClick={() => handleDelete()}>
-                        Delete
-                    </button>
+                    {create? null : <button className="logout-btn" onClick={(e) => handleDelete(e, user.id)}>Delete</button>}
                 </div>
             </form>
         </div>

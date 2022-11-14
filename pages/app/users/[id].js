@@ -28,7 +28,7 @@ export function getStaticPaths (ctx) {
     }
 }
 
-export default function (props) {
+export default function UserDetails (props) {
 
     const user = JSON.parse(props.user);
 
@@ -49,13 +49,13 @@ export default function (props) {
             router.push('/app');
         }   catch (err) {
             console.error(err);
-        }   
+        }
     }
 
-    const handleDelete = async (e) => {
+    const handleDelete = async (e, id) => {
         e.preventDefault();
         try{
-            const res = await fetch(`/api/users/${user._id}`, {
+            const res = await fetch(`/api/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ export default function (props) {
             router.push('/app');
         }   catch (err) {
             console.error(err);
-        }   
+        }
     }
 
     return(

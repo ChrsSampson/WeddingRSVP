@@ -44,6 +44,10 @@ a {
   box-sizing: border-box;
 }
 
+form{
+  min-width: min-content  ;
+}
+
 button{
   border: none;
   border-radius: .25em;

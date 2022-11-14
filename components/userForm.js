@@ -13,10 +13,21 @@ export default function UserForm (props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        const emailInfo = {
+            email: email.toLowerCase(),
+            password: password.toLowerCase()
+        }
+
+        const codeInfo = {
+            firstName: firstName.toLowerCase(),
+            lastName: lastName.toLowerCase(),
+            inviteCode: partyCode
+        }
+
         if(props.code){
-            props.submitHandler({ firstName, lastName, inviteCode: partyCode });
+            props.submitHandler(codeInfo);
         } else {
-            props.submitHandler({email, password});
+            props.submitHandler(emailInfo);
         }
     }
 
