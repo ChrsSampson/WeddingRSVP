@@ -59,7 +59,7 @@ userSchema.pre('save', async function(next) {
     }
 
     // hash the password before save on creation and update
-    if (this.isModified('password') || this.isNew) {
+    if ( (this.isModified('password') || this.isNew) && (this.password && this.password.length) ) {
         try {
             // hash user password
             const salt = await bcrypt.genSalt(10);
@@ -72,7 +72,7 @@ userSchema.pre('save', async function(next) {
     }
 
     // add user to party
-    if(this.isModified('party') || this.isNew){
+    if(this.isModified('party') || this.isNew && this.party && this.party.length) {
         try {
             const party = await Party.findById(this.party);
             party.users.push(this._id);
@@ -84,7 +84,6 @@ userSchema.pre('save', async function(next) {
     }
 
 });
-
 
 userSchema.pre(['updateOne', 'findOneAndUpdate'], async function(next) {
     try{
@@ -121,6 +120,7 @@ userSchema.post(['updateOne', 'findOneAndUpdate'], async function(doc, next) {
     }
 });
 
+// remove user from party on user deletion
 userSchema.pre('deleteOne', async function(next) {
     try {
         const party = await Party.findById(this.party);

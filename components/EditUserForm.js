@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
+import { DEFAULT_SANS_SERIF_FONT } from 'next/dist/shared/lib/constants';
 
 export default function EditUserForm ({user, backRoute, handleSubmit, handleDelete, create=false, message}) {
 
@@ -22,7 +23,6 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
         const getParties = async () => {
             const res = await fetch('/api/party');
             const data = await res.json();
-            console.log(data);
             setParties([...data.data]);
         }
 
@@ -92,8 +92,7 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
                         value={party}
                         onChange={(e) => setParty(e.target.value)}
                     >
-                        <option value=''>-- Please Select a Party --</option>
-                        <option value="">None</option>
+                        <option value=''>None</option>
                         {parties.map((party) => (
                             <option key={party._id} value={party._id}>
                                 {party.name}

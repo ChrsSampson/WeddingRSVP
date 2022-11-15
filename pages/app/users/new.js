@@ -13,7 +13,6 @@ export default function NewUser () {
 
     const submitHandler = (e, user) => {
         e.preventDefault();
-        console.log(user)
         fetch('/api/users', {
             method: 'POST',
             headers: {
@@ -23,7 +22,13 @@ export default function NewUser () {
         })
         .then(res => res.json())
         .then(data => {
-            router.push('/app');
+            if(data.status === 200) {
+                console.log(data)
+                router.push('/app');
+            } else {
+                const error = new Error(data.message)
+                throw error;
+            }
         })
         .catch(err => setMessage(err.message));
     }

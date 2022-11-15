@@ -2,6 +2,7 @@
 
 import User from '../../../database/userModel';
 import Response from '../../../lib/response';
+import requestParser from '../../../lib/requestParser';
 
 export default async function handler (req, res) {
     const {method} = req;
@@ -18,8 +19,10 @@ export default async function handler (req, res) {
                 res.status(404).json(response);
             }
         } else if (method === "PUT") {
+
             try{
-                const result = await User.findOneAndUpdate(id, req.body, {new: true});
+                const data = requestParser(req.body);
+                const result = await User.findOneAndUpdate({'_id': id}, data, {new: true});
                 // respond
                 const response = new Response(200, 'success', result);
                 res.status(response.status).json(response);
