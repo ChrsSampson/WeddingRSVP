@@ -17,6 +17,7 @@ export default function UserList ({users}) {
             <table>
                 <thead>
                     <tr>
+                        <th>Attending</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -24,16 +25,18 @@ export default function UserList ({users}) {
                         <th>Invite Code</th>
                         <th>Role</th>
                         <th>Actions</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {users.map((user, index) => (
                         <tr key={index}>
+                            <td>{user.attending ? "yes" : 'no'}</td>
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
                             <td>{user.email}</td>
                             <td>{user.party ? user.party.name : 'none'}</td>
-                            <td>{user.party? user.party.code : 'N/A'}</td>
+                            <td>{user.party? user.party.inviteCode : 'N/A'}</td>
                             <td>{user.role === 'admin' ? 'Organizer' : 'Attendee'}</td>
                             <td>
                                 <Link href={`/app/users/${user._id}`} className="btn">

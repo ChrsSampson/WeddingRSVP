@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: false,
-        unique: true
+        default: null
     },
     firstName: {
         type: String,
@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     party: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Party'
+    },
+    attending:{
+        type: Boolean,
+        default: false
     },
     foodSelection: {
         type: String,
@@ -108,16 +112,20 @@ userSchema.post(['updateOne', 'findOneAndUpdate'], async function(doc, next) {
     const userId = doc._id;
 
     try{
-            const party = await Party.findOne({_id: partyId});
-            // add the user to the party if the user is not already in the party
-            if(party && party.users.indexOf(userId) === -1){
-                party.users.push(userId);
-                await party.save();
-            }
-            next();
+        const party = await Party.findOne({_id: partyId});
+        // add the user to the party if the user is not already in the party
+        if(party && party.users.indexOf(userId) === -1){
+            party.users.push(userId);
+            await party.save();
+        } else if (party && party.users.indexOf(userId) > -1) {
+            // remove the user from the party if the user is already in the party
+            party.users = party.users.filter(user => user != userId);
+            await party.save();
+        }    
     } catch (err) {
         next(err);
     }
+    next();
 });
 
 // remove user from party on user deletion

@@ -27,7 +27,11 @@ export default async function handler (req, res) {
             const {email, firstName, lastName, password, party} = req.body;
             let pid = ''
             if(party && party.length > 0) {
-                pid = mongoose.Types.ObjectId(party);
+                if(party !== 'none') {
+                    pid = mongoose.Types.ObjectId(party);
+                } else {
+                    pid = null;
+                }
             } else {
                 pid = null;
             }

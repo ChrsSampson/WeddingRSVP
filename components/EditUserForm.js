@@ -13,8 +13,9 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
     const [lastName, setLastName] = useState(user.lastName || '');
     const [email, setEmail] = useState(user.email || '');
     const [role, setRole] = useState(user.role || 'attendee');
-    const [party, setParty] = useState(null);
+    const [party, setParty] = useState(user.party ? user.party._id : 'none');
     const [parties, setParties] = useState([]);
+    const [attending, setAttending] = useState(user.attending || false);
 
     const router = useRouter();
 
@@ -35,7 +36,8 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
         lastName,
         email,
         role,
-        party
+        party,
+        attending
     }
 
     return (
@@ -72,6 +74,12 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
                         onChange={(e) => setLastName(e.target.value)}
                     />
                 </div>
+                {!create && 
+                    <div className="form-group">
+                        <input type="checkbox" name="attending" id="attending" checked={attending} onChange={(e) => setAttending(e.target.checked)}/>
+                        <label htmlFor="attending">Attending?</label>
+                    </div>
+                }
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
@@ -92,7 +100,7 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
                         value={party}
                         onChange={(e) => setParty(e.target.value)}
                     >
-                        <option value=''>None</option>
+                        <option value='none'>None</option>
                         {parties.map((party) => (
                             <option key={party._id} value={party._id}>
                                 {party.name}

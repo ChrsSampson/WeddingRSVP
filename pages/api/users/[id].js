@@ -40,7 +40,8 @@ export default async function handler (req, res) {
                 res.status(response.status).json(response);
             } catch (err) {
                 // respond with error
-                const response = new Response(500, 'error', null, err);
+                console.log(err)
+                const response = new Response(500, err.message, null, err);
                 res.status(response.status).json(response);
             }
         } else {

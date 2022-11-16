@@ -13,7 +13,7 @@ export async function getStaticProps (ctx) {
     return {
         props: {
             id: id,
-            user: user
+            user: JSON.parse(user)
         }
     }
 }
@@ -31,7 +31,7 @@ export function getStaticPaths (ctx) {
 export default function UserDetails (props) {
     const [message, setMessage] = useState('');
 
-    const user = JSON.parse(props.user);
+    const user = props.user;
     const router = useRouter();
 
     const id = router.query.id

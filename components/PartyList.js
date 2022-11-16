@@ -5,7 +5,14 @@ import Link from 'next/link';
 export default function PartyList ({parties}) {
     return (
         <div className="container">
-            <h1>Parties</h1>
+            <article className="toolbar">
+                <h1>Parties</h1>
+                <div className='fluid-container'>
+                    <Link href="/app/party/new" className='btn'>
+                        Add Party
+                    </Link>
+                </div>
+            </article>
             <table>
                 <thead>
                     <tr>
@@ -28,7 +35,7 @@ export default function PartyList ({parties}) {
                                 ))}
                             </td>
                             <td>
-                                <Link href={`/app/parties/${party._id}`}>
+                                <Link href={`/app/party/${party._id}`}>
                                     Edit
                                 </Link>
                             </td>
