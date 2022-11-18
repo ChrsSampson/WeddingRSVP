@@ -2,10 +2,8 @@
 
 import {useRouter} from 'next/router';
 import {useState} from 'react';
-import { createAvatar } from '@dicebear/avatars';
-import * as style from '@dicebear/personas';
 import Image from 'next/image';
-
+import capitalize from '../lib/capitalize';
 
 export default function UserBug (props) {
 
@@ -57,7 +55,7 @@ export default function UserBug (props) {
                         paddingRight: '0.5em'
                         }}
                     >
-                    <span className="user-name">{props.user.firstName} {props.user.lastName}</span>
+                    <span className="user-name">{capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</span>
                     <button
                         style={{
 
