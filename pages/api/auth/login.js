@@ -34,12 +34,12 @@ export default async function handler (req, res) {
                         cookies.set('user', JSON.stringify(userInfo), {
                             httpOnly: true,
                             sameSite: 'strict',
-                            maxAge: 60 * 60 * 24, // 1 day
+                            maxAge: 60 * 60 * 24 * 7,
                         })
                         cookies.set('session', 'true', {
                             httpOnly: true,
                             sameSite: 'strict',
-                            maxAge: 60 * 60 * 24, // 1 day
+                            maxAge: 60 * 60 * 24 * 7,
                         })
                         const response = new Response(200, 'success', userInfo);
                         res.status(response.status).json(response);

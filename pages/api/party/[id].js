@@ -1,7 +1,8 @@
 // /api/party/[id] - find one party by id
 
-import Party from '../../../database/partyModel.js';
-import Response from '../../../lib/response.js';
+import User from '../../../database/userModel';
+import Party from '../../../database/partyModel';
+import Response from '../../../lib/response';
 
 export default async function handler (req, res) {
 
@@ -24,9 +25,28 @@ export default async function handler (req, res) {
     } else if (method === "PUT") {
         // update one party by id
         try{
-            const result = await Party.findByIdAndUpdate(id, req.body, {new: true});
+            const updateData = req.body;
+            const updatedparty = await Party.findByIdAndUpdate(id, updateData, {new: true});
+            // find all the users in with the party id
+            const usersWithParty = await User.find({party: id});
+            // for each user, if their id is not in the users array, remove the party from the user
+            usersWithParty.forEach(async (user, index) => {
+                if(!updateData.users.includes(user._id)){
+                    user.party = null;
+                    await user.save();
+                }
+            });
+
+            updatedparty.users.forEach(async (user, index) => {
+                if(user.party !== id){
+                    const  u = await User.findById(user._id);
+                    u.party = id;
+                    await u.save();
+                }
+            });
+
             // respond
-            const response = new Response(200, 'success', result);
+            const response = new Response(200, 'success', updatedparty);
             res.status(response.status).json(response);
         } catch (err) {
             // respond with error
