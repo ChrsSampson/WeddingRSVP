@@ -3,11 +3,12 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: false,
+        default: null
     },
     firstName: {
         type: String,
@@ -19,11 +20,30 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     party: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Party'
+    },
+    attending:{
+        type: Boolean,
+        default: false
+    },
+    foodSelection: {
+        type: String,
+        required: false,
+        default: null
+    },
+    allergies: {
+        type: String,
+        required: false,
+        default: null
+    },
+    songRequests: {
+        type: String,
+        required: false,
+        default: null
     },
     color: {
         type: String,
@@ -43,8 +63,9 @@ userSchema.pre('save', async function(next) {
     }
 
     // hash the password before save on creation and update
-    if (this.isModified('password') || this.isNew) {
+    if ( (this.isModified('password') || this.isNew) && (this.password && this.password.length) ) {
         try {
+            // hash user password
             const salt = await bcrypt.genSalt(10);
             const hash = await bcrypt.hash(this.password, salt);
             this.password = hash;
@@ -55,6 +76,24 @@ userSchema.pre('save', async function(next) {
     }
 
 });
+
+userSchema.pre(['updateOne', 'findOneAndUpdate'], async function(next) {
+    try{
+        if (this._update.password && this._update.password.length > 0) {
+            // hash user password
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(this._update.password, salt);
+            this._update.password = hash;
+            next();
+        }
+
+    } catch (err) {
+        next(err);
+    }
+});
+
+
+
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 

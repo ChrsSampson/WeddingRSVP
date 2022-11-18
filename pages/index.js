@@ -6,7 +6,7 @@ export default function Home() {
 
 
   return (
-    <div className="container">
+    <div className="">
       <Head>
         <title>Wedding | 2023</title>
         <meta name="description" content="Sampson Wedding" />

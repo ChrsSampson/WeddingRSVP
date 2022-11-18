@@ -1,0 +1,9 @@
+example config
+
+create file called .env.local
+
+It needs to contain these values
+
+MONGO_URI='[your db uri]'
+SHARED_SECRET='[secret string]'
+AVATAR_SEED="[some string to generate Avatars off of]"

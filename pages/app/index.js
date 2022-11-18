@@ -2,12 +2,21 @@
 
 import Cookies from 'cookies';
 import Navigation from '../../components/Navigation';
+import AdminDashboard from './AdminDashboard';
+import UserDashboard from './UserDashboard';
+import connectDB from '../../database/connection';
 
-export function getServerSideProps (ctx) {
+export async function getServerSideProps (ctx) {
+    // connect to database
+    await connectDB()
+
     // check if user is logged in
     const cookies = new Cookies(ctx.req, ctx.res);
     const session = cookies.get('session')
     const user = cookies.get('user')
+
+    // data to be sent to the client
+    let users, parties, party = '';
 
     if((session === 'false' || !session) || !user) {
         return {
@@ -17,15 +26,32 @@ export function getServerSideProps (ctx) {
             }
         }
     } else {
+        // parse the current user
         const parsedUser = JSON.parse(user);
+
+        console.log()
+        if(parsedUser.role === 'admin') {
+            const fetchedUsers = await (await fetch('http://localhost:3000/api/users')).json()
+            users = fetchedUsers.data;
+            const fetchedParties = await (await fetch('http://localhost:3000/api/party')).json()
+            parties = fetchedParties.data;
+        } else {
+            const fetchedParty = await (await fetch(`http://localhost:3000/api/party/${parsedUser.partyId}`)).json()
+            party = fetchedParty.data;
+            console.log(party)
+        }
+
+
         return {
             props: {
-               user: parsedUser
+                user: parsedUser,
+                users: users || [],
+                parties: parties || [],
+                party: party || null
             }
         }
     }
 }
-
 
 export default function App (props) {
 
@@ -33,8 +59,10 @@ export default function App (props) {
         <div className="container">
             <Navigation user={props.user} />
             <main className="container-full App">
-                <h1>If you see this you are in</h1>
-                <span>{props.user.firstName} {props.user.lastName}</span>
+                {props.user.role === "user" ?
+                    <UserDashboard user={props.user} party={props.party}  /> :
+                    <AdminDashboard user={props.user} users={props.users} parties={props.parties}  />
+                }
             </main>
         </div>
     )

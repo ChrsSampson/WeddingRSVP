@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dicebear/avatars": "^4.10.5",
+    "@dicebear/personas": "^4.10.5",
     "bcryptjs": "^2.4.3",
     "cookies": "^0.8.0",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",
+    "install": "^0.13.0",
     "mongoose": "^6.7.2",
     "next": "13.0.2",
+    "npm": "^8.19.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.56.0"

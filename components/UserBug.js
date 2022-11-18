@@ -2,6 +2,8 @@
 
 import {useRouter} from 'next/router';
 import {useState} from 'react';
+import Image from 'next/image';
+import capitalize from '../lib/capitalize';
 
 export default function UserBug (props) {
 
@@ -35,27 +37,25 @@ export default function UserBug (props) {
                     borderColor: props.user.color
                 }}
             >
+                <div className="user-avatar-wrapper">
+                    <Image
+                        className="user-avatar"
+                        src={`https://avatars.dicebear.com/api/personas/${props.user.firstName + props.user.lastName}.svg`}
+                        alt="user avatar"
+                        width={70}
+                        height={70}
+                    />
+                </div>
                 <div
-                    className="user-info"
                     style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}
-                >
-                    <span className="user-avatar"
-                        style={{backgroundColor: props.user.color}}
-                    >
-                        <div>{String(props.user.firstName[0]).toUpperCase()} {String(props.user.lastName[0]).toUpperCase()}</div>
-                    </span>
-                    <span
-                        class="user-name"
-                        style={{
-                            maxWidth: `${showButton ? '100%' : '0'}`,
+                        display: showButton ? 'flex' : 'none',
+                        flexDirection: 'column',
+                        alignItems: "center",
+                        gap: '0.5em',
+                        paddingRight: '0.5em'
                         }}
                     >
-                        {props.user.firstName} {props.user.lastName}
-                    </span>
-                </div>
+                    <span className="user-name">{capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</span>
                     <button
                         style={{
 
@@ -65,6 +65,7 @@ export default function UserBug (props) {
                     >
                         Logout
                     </button>
+                </div>
             </article>
         )
     }

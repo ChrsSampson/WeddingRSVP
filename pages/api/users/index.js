@@ -2,18 +2,16 @@
 
 import User from '../../../database/userModel.js';
 import Response from '../../../lib/response.js';
-import connectDB from '../../../database/connection.js';
+import mongoose from 'mongoose';
+import requestParser from '../../../lib/requestParser.js';
 
 export default async function handler (req, res) {
     const {method} = req;
 
-    // connect to database
-    connectDB();
-
     // get all users from database (admin only)
     async function getAllUsers () {
         try{
-            const result = await User.find({});
+            const result = await User.find({}).populate('party');
             // respond
             const response = new Response(200, 'success', result);
             res.status(response.status).json(response);
@@ -24,72 +22,42 @@ export default async function handler (req, res) {
         }
     }
 
-    async function createUser (data) {
+    async function createUser () {
         try{
-            const {email, firstName, lastName, password, partyId} = data;
-            const user = new User({
-                email: email,
-                firstName: firstName,
-                lastName: lastName,
-                password: password,
-                partyId: partyId
-            })
-
-            const result = await user.save(user);
+            const {email, firstName, lastName, password, party} = req.body;
+            let pid = ''
+            if(party && party.length > 0) {
+                if(party !== 'none') {
+                    pid = mongoose.Types.ObjectId(party);
+                } else {
+                    pid = null;
+                }
+            } else {
+                pid = null;
+            }
+            const userData = requestParser({email, firstName, lastName, password, party: pid});
+            const user = new User(userData);
+            const result = await user.save()
             // respond
             const response = new Response(200, 'success', result);
             res.status(response.status).json(response);
         } catch (err) {
             // respond with error
-            const response = new Response(500, 'error', null, err);
+            console.log(err)
+            const response = new Response(500, err.message, null, err);
             res.status(response.status).json(response);
         }
     }
 
-    async function updateUser (data) {
-        try{
-            const result = await User.findByIdAndUpdate(data._id, data, {new: true});
-            // respond
-            const response = new Response(200, 'success', result);
-            res.status(response.status).json(response);
-        } catch (err) {
-            // respond with error
-            const response = new Response(500, 'error', null, err);
-            res.status(response.status).json(response);
-        }
-    }
-
-    async function deleteUser (id) {
-        try{
-            const result = await User.findByIdAndDelete(id);
-            // respond
-            const response = new Response(200, 'success', result);
-            res.status(response.status).json(response);
-        } catch (err) {
-            // respond with error
-            const response = new Response(500, 'error', null, err);
-            res.status(response.status).json(response);
-        }
-    }
 
     switch (method) {
         case 'GET':
             getAllUsers();
             break;
         case 'POST':
-            createUser(req.body);
-            break;
-        case 'PUT':
-            updateUser(req.body);
-            break;
-        case 'DELETE':
-            deleteUser(req.body._id);
+            createUser();
             break;
         default:
             res.status(400).json(new Response(400, 'error', null, 'unsupported method'));
     }
-
-
-
-
 }
