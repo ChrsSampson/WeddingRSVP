@@ -7,25 +7,40 @@ import {useEffect, useState} from 'react';
 
 export default function UserDashboard (props) {
 
-    const [members, setMembers] = useState([]);
+    const [error, setError] = useState(null);
+    const [message,setMessage] = useState(null);
 
-    useEffect(() => {
-        if(props.user.party.users && props.user.party.users.length > 0){
-            const m = [];
-            for(let u of props.user.party.users){
-                fetch(`/api/users/${u}`, {
-                    method: 'GET'                    
-                })
-                .then(res => res.json())
-                .then(data => {
-                    m.push(data.data)
-                    setMembers(m);
-                })
-            }
-            setMembers([...m]);
-        }
+    function renderForms () {
+        return props.party.users.map((u, i) => {
+            return (
+                <RsvpForm
+                    key={i}
+                    user={u}
+                    attending={u.attending}
+                    allergies={u.allergies}
+                    songRequest={u.songRequests}
+                    handleSubmit={handleFormSumbit}
+                />
+            )
+        })
+    }
 
-    }, []);
+    function handleFormSumbit (e, id, data) {
+        e.preventDefault();
+        fetch(`/api/users/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(err => {});
+    }
+
 
     return(
         <div className="container">
@@ -33,13 +48,11 @@ export default function UserDashboard (props) {
                 <h1>Hello, {capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h1>
                 <h2>Party of {props.user.party.users.length}</h2>
             </section>
+            {error && <h4>{error}</h4>}
             <section className="container">
                 <article className="fluid-container">
                     {/* <RsvpForm user={props.user} attending={props.user.attending} allergies={props.user.allergies} /> */}
-                    {members.length && members.map((u, i) => {
-                        return <RsvpForm key={i} user={u} attending={u.attending} allergies={u.allergies} songRequest={u.songRequests} />
-                    })
-                    }
+                    {props.party.users.length > 0 ? renderForms() : <h4>Loading...</h4>}
                 </article>
             </section>
 

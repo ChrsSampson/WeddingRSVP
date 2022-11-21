@@ -20,7 +20,6 @@ export default async function handler (req, res) {
                 res.status(404).json(response);
             }
         } else if (method === "PUT") {
-
             try{
                 const data = requestParser(req.body);
                 const user = await User.findOneAndUpdate({'_id': id}, data);

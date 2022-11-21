@@ -12,7 +12,11 @@ export default function RsvpForm (props) {
     const [song, setSong] = useState(props.song || '');
 
     return (
-        <form className="UserForm" style={{"borderColor": props.user.color}}>
+        <form
+            className="UserForm"
+            style={{"borderColor": props.user.color}}
+            onSubmit={(e) => props.handleSubmit(e, props.user._id, {attending, allergies, food, song})}
+        >
             <div className="fluid-container">
                 <h3>{capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h3>
                 <Image
@@ -47,7 +51,9 @@ export default function RsvpForm (props) {
                 <label htmlFor="song">Song Request</label>
                 <input value={song} onChange={(e) => setSong(e.target.value)} type="text" id="song" />
             </div>
-
+            <div className="form-group">
+                <button type="submit">Submit</button>
+            </div>
         </form>
     )
 }
