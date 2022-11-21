@@ -4,9 +4,11 @@ import User from '../../../database/userModel.js';
 import Response from '../../../lib/response.js';
 import mongoose from 'mongoose';
 import requestParser from '../../../lib/requestParser.js';
+import connectDB from '../../../database/connection';
 
 export default async function handler (req, res) {
     const {method} = req;
+    connectDB();
 
     // get all users from database (admin only)
     async function getAllUsers () {

@@ -147,6 +147,18 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   font-size: 1.25rem;
 }
 
+input[disabled], select[disabled], button[disabled], textarea[disabled]{
+  color: $light-gray;
+  background-color: darken($light-gray, 20%);
+  cursor: not-allowed;
+
+  &:hover{
+    background-color: darken($light-gray, 20%);
+  }
+}
+
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -10,8 +10,8 @@ export default async function handler (req, res) {
     const {method} = req;
     const {email, password, firstName, lastName, inviteCode} = req.body;
     if(method === "POST") {
+        connectDB();
         try{
-            connectDB();
             if(email && password) {
                 const user = await User.findOne({email: email});
                 if(!user){

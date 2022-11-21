@@ -19,6 +19,7 @@ export default function UserDashboard (props) {
                     attending={u.attending}
                     allergies={u.allergies}
                     songRequest={u.songRequests}
+                    foodSelection={u.foodSelection}
                     handleSubmit={handleFormSumbit}
                 />
             )
@@ -36,9 +37,12 @@ export default function UserDashboard (props) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            console.log(data)
+            setMessage(`${data.data.firstName}'s RSVP has been updated`);
         })
-        .catch(err => {});
+        .catch(err => {
+            setError(err.message);
+        });
     }
 
 
@@ -49,6 +53,7 @@ export default function UserDashboard (props) {
                 <h2>Party of {props.user.party.users.length}</h2>
             </section>
             {error && <h4>{error}</h4>}
+            {message && <h4>{message}</h4>}
             <section className="container">
                 <article className="fluid-container">
                     {/* <RsvpForm user={props.user} attending={props.user.attending} allergies={props.user.allergies} /> */}

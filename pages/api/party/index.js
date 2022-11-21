@@ -2,8 +2,10 @@
 
 import Party from '../../../database/partyModel.js';
 import Response from '../../../lib/response.js';
+import connectDB from '../../../database/connection';
 
 export default async function handler (req, res) {
+    connectDB();
     const {method} = req;
 
     async function getAll () {
