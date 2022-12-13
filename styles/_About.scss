@@ -1,0 +1,18 @@
+.About{
+
+    background-image: url('/static/stockAbout.jpg');
+    background-size: cover;
+
+    .About-article{
+        position:absolute;
+        top: 20%;
+        left: 40%;
+
+        background-color: opacify($color: $dark-gray, $amount: .25);
+        padding: 2em;
+        border: 1px solid;
+        border-radius: 1.25em;
+        border-color: $wild-blue-yonder;
+    }
+
+}

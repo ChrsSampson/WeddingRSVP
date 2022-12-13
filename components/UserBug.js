@@ -33,9 +33,6 @@ export default function UserBug (props) {
                 onMouseEnter={() => setShowButton(true)}
                 onMouseLeave={() => setShowButton(false)}
                 className="UserBug"
-                style={{
-                    borderColor: props.user.color
-                }}
             >
                 <div className="user-avatar-wrapper">
                     <Image

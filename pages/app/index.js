@@ -56,8 +56,8 @@ export default function App (props) {
 
     return (
         <div className="container">
-            <Navigation user={props.user} />
-            <main className="container-full App">
+            <Navigation user={props.user} dark={true} />
+            <main className="container-full-centered App">
                 {props.user.role === "user" ?
                     <UserDashboard user={props.user} party={props.party}  /> :
                     <AdminDashboard user={props.user} users={props.users} parties={props.parties}  />

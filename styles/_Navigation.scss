@@ -32,3 +32,26 @@
 
     }
 }
+
+
+.nav-light-mode{
+    ul{
+
+        li{
+            a{
+                color: $dark-gray;
+            }
+        }
+    }
+}
+
+.nav-dark-mode{
+    ul{
+    
+            li{
+                a{
+                    color: $light-gray;
+                }
+            }
+    }
+}

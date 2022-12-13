@@ -11,12 +11,9 @@
     background-color: transparent;
     border-radius: .25em;
     overflow: hidden;
-    transition: all 0.5s;
-    animation: fadeIn;
+    border-color: $light-gray;
 
     &:hover{
-        transition: all 0.5s;
-        animation: fadeIn;
         border: 2px solid;
 
         .user-name{

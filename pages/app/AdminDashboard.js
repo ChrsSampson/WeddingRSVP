@@ -15,7 +15,7 @@ export default function AdminDashboard (props) {
                 <button className="tab" onClick={() => setTab('users')}>Users</button>
                 <button className="tab" onClick={() => setTab('parties')}>Parties</button>
             </section>
-            <section className="dual-column">
+            <section className="container">
                 {tab === "users" ? 
                     <UserList users={props.users} />
                 :

@@ -3,7 +3,8 @@
         './Home.scss',
         './Navigation.scss',
         './UserBug',
-        './UserForm.scss';
+        './UserForm.scss',
+        './About.scss';
 
 // ----Root Styles -------
 
@@ -179,6 +180,12 @@ input[disabled], select[disabled], button[disabled], textarea[disabled]{
   padding: 0 1em;
 }
 
+.container-centered{
+  @extend .container;
+  display:grid;
+  place-items: center;
+}
+
 .container-full{
   height:100vh;
   overflow: hidden
@@ -220,4 +227,19 @@ input[disabled], select[disabled], button[disabled], textarea[disabled]{
   justify-content: space-between;
   align-items: center;
   margin: .5em 0;
+}
+
+
+.article{
+  .content-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: .5em;
+  }
+
+  .content{
+    line-height: 1.5rem;
+    max-width: 1000px;
+  }
+  
 }
