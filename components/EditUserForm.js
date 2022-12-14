@@ -74,7 +74,7 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
                         onChange={(e) => setLastName(e.target.value)}
                     />
                 </div>
-                {!create && 
+                {!create &&
                     <div className="form-group">
                         <input type="checkbox" name="attending" id="attending" checked={attending} onChange={(e) => setAttending(e.target.checked)}/>
                         <label htmlFor="attending">Attending?</label>
@@ -125,7 +125,7 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
                     <button className="logout-btn" onClick={() => router.push(backRoute)}>
                         Back
                     </button>
-                    {create? null : <button className="logout-btn" onClick={(e) => handleDelete(e, user.id)}>Delete</button>}
+                    {create? null : <button className="danger-btn" onClick={(e) => handleDelete(e, user.id)}>Delete</button>}
                 </div>
             </form>
         </div>

@@ -2,13 +2,17 @@
 
 .Home{
   padding: 2em;
-  background-image: url('/static/stockPhoto.jpg');
+  background-image: url('/static/Film_002.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position-y: -6em;
+  background-position-x: -1em;
 }
 
 .Home-hero{
+  position: relative;
+  top:4em;
+  left: 19em;
   height: 100%;
   text-align: center;
 

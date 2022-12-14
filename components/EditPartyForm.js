@@ -2,7 +2,7 @@
 
 import {useState, useEffect} from 'react'
 import Link from 'next/link'
-
+import capitalize from '../lib/capitalize'
 
 export default function PartyForm ({create, party, handleSubmit, handleDelete, message, backRoute}) {
 
@@ -79,7 +79,9 @@ export default function PartyForm ({create, party, handleSubmit, handleDelete, m
                                         setMemebers([...members, user]);
                                         setTerm('');
                                     }}>
-                                        {user.firstName} {user.lastName}
+                                        <p className="dropdown-item-contents">
+                                            {capitalize(user.firstName)} {capitalize(user.lastName)}
+                                        </p>
                                     </li>
                                 )
                             }
@@ -92,12 +94,16 @@ export default function PartyForm ({create, party, handleSubmit, handleDelete, m
             </div>
             <div className="form-group">
                 <label htmlFor="members">Current Members</label>
-                <ol>
+                <ol className="member-list">
                     { members.length > 0 ? members.map((member, i) => {
                             return (
                                 // member are removable on click
-                                <li key={i} onClick={(e) => handleRemoveMember(member._id) }>
-                                    <p>{member.firstName} {member.lastName}</p>
+                                <li
+                                    className="member-list-item"
+                                    key={i}
+                                    onClick={(e) => handleRemoveMember(member._id) }
+                                >
+                                    <span>{capitalize(member.firstName)} {capitalize(member.lastName)}</span>
                                 </li>
                             )
                         })
@@ -119,7 +125,7 @@ export default function PartyForm ({create, party, handleSubmit, handleDelete, m
                     </button>
                 }
             </div>
-        </form>    
+        </form>
     )
 
 }

@@ -10,7 +10,7 @@ export default function About(){
             <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className="container-full About">
+        <main className="container-full About fade-in">
             <Navigation dark={true} />
             <section className="container-centered">
                 <article className='article About-article'>
@@ -53,5 +53,5 @@ export default function About(){
             </section>
         </main>
     </div>
- )   
+ )
 }

@@ -4,7 +4,9 @@
         './Navigation.scss',
         './UserBug',
         './UserForm.scss',
-        './About.scss';
+        './PartyForm',
+        './About.scss',
+        './Location.scss';
 
 // ----Root Styles -------
 
@@ -59,7 +61,7 @@ table {
     border-radius: .5em 0 0 .5em
   }
   th:last-child{
-    border-radius: 0 .5em .5em 0 
+    border-radius: 0 .5em .5em 0
   }
 
   th {
@@ -241,5 +243,5 @@ input[disabled], select[disabled], button[disabled], textarea[disabled]{
     line-height: 1.5rem;
     max-width: 1000px;
   }
-  
+
 }
