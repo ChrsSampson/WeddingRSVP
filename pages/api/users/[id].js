@@ -46,6 +46,9 @@ export default async function handler (req, res) {
         } else if (method === 'DELETE') {
             // delete one party by id
             try{
+                // find and remove user from party
+                const paryWithUser = await Party.findOneAndUpdate({users: id}, {$pull: {users: id}});
+                // delete user
                 const result = await User.findByIdAndDelete(id);
                 // respond
                 const response = new Response(200, 'success', result);

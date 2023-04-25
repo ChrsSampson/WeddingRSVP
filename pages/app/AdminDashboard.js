@@ -7,6 +7,25 @@ import {useState} from 'react';
 export default function AdminDashboard (props) {
 
     const [tab, setTab] = useState('users');
+    const [filteredUsers, setFilteredUsers] = useState(props.users);
+
+    function handleSearch (searchTerm) {
+        // reset
+        searchTerm = searchTerm.toLowerCase()
+
+        if(searchTerm === '' || searchTerm === null) {
+            setFilteredUsers(props.users)
+        }
+
+        const newResult = filteredUsers.filter(user => {
+            if( user.firstName.toLowerCase().includes(searchTerm) ||
+                user.lastName.toLowerCase().includes(searchTerm) ) {
+                    return true
+            }
+        })
+
+        setFilteredUsers(newResult)
+    }
 
     return(
         <div className="container">
@@ -17,7 +36,7 @@ export default function AdminDashboard (props) {
             </section>
             <section className="dual-column">
                 {tab === "users" ? 
-                    <UserList users={props.users} />
+                    <UserList users={props.users === filteredUsers ? props.users : filteredUsers} handleSearch={handleSearch} />
                 :
                     <PartyList parties={props.parties} />
                 }

@@ -2,13 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import UserSearchBar from './UserSearchBar';
 
-export default function UserList ({users}) {
+export default function UserList ({users, handleSearch}) {
     return (
         <div className="container">
             <article className="toolbar">
                 <h1>People</h1>
                 <div className='fluid-container'>
+                    <UserSearchBar handleSearch={handleSearch} />
                     <Link href="/app/users/new" className='btn'>
                         Add User
                     </Link>

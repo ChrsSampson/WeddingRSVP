@@ -28,22 +28,22 @@ export default async function handler (req, res) {
             const updateData = req.body;
             const updatedparty = await Party.findByIdAndUpdate(id, updateData, {new: true});
             // find all the users in with the party id
-            const usersWithParty = await User.find({party: id});
-            // for each user, if their id is not in the users array, remove the party from the user
-            usersWithParty.forEach(async (user, index) => {
-                if(!updateData.users.includes(user._id)){
-                    user.party = null;
-                    await user.save();
-                }
-            });
+            // const usersWithParty = await User.find({party: id});
+            // // for each user, if their id is not in the users array, remove the party from the user
+            // usersWithParty.forEach(async (user, index) => {
+            //     if(!updateData.users.includes(user._id)){
+            //         user.party = null;
+            //         await user.save();
+            //     }
+            // });
 
-            updatedparty.users.forEach(async (user, index) => {
-                if(user.party !== id){
-                    const  u = await User.findById(user._id);
-                    u.party = id;
-                    await u.save();
-                }
-            });
+            // updatedparty.users.forEach(async (user, index) => {
+            //     if(user.party !== id){
+            //         const  u = await User.findById(user._id);
+            //         u.party = id;
+            //         await u.save();
+            //     }
+            // });
 
             // respond
             const response = new Response(200, 'success', updatedparty);

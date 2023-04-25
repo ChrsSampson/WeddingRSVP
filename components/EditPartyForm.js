@@ -66,46 +66,48 @@ export default function PartyForm ({create, party, handleSubmit, handleDelete, m
                 :
                 null
             }
-            <div className='form-group'>
-                <label htmlFor="user-search">Add User</label>
-                <input type="text" className="form-control" id="user-search" value={term} onChange={(e) => setTerm(e.target.value)} />
-                {/* drop down */}
-                {term.length > 0 && filtered && filtered.length ?
-                    <div className="dropdown">
-                        <ul className="dropdown-menu">
-                            {filtered.map((user, i) => {
-                                return (
-                                    <li key={i} className="dropdown-item" onClick={() => {
-                                        setMemebers([...members, user]);
-                                        setTerm('');
-                                    }}>
-                                        {user.firstName} {user.lastName}
-                                    </li>
-                                )
-                            }
-                            )}
-                        </ul>
-                    </div>
-                    :
-                    null
-                }
-            </div>
-            <div className="form-group">
-                <label htmlFor="members">Current Members</label>
-                <ol>
-                    { members.length > 0 ? members.map((member, i) => {
-                            return (
-                                // member are removable on click
-                                <li key={i} onClick={(e) => handleRemoveMember(member._id) }>
-                                    <p>{member.firstName} {member.lastName}</p>
-                                </li>
-                            )
-                        })
-                        :
-                        <span>No Members yet</span>
-                    }
-                </ol>
-            </div>
+            {
+            //<div className='form-group'>
+            //    <label htmlFor="user-search">Add User</label>
+            //    <input type="text" className="form-control" id="user-search" value={term} onChange={(e) => setTerm(e.target.value)} />
+            //    {/* drop down */}
+            //    {term.length > 0 && filtered && filtered.length ?
+            //        <div className="dropdown">
+            //            <ul className="dropdown-menu">
+            //                {filtered.map((user, i) => {
+            //                    return (
+            //                        <button key={i} className="dropdown-item" onClick={() => {
+            //                            setMemebers([...members, user]);
+            //                            setTerm('');
+            //                        }}>
+            //                            {user.firstName} {user.lastName}
+            //                        </button>
+            //                    )
+            //                }
+            //                )}
+            //            </ul>
+            //        </div>
+            //        :
+            //        null
+            //    }
+            //</div>
+            //<div className="form-group">
+            //    <label htmlFor="members">Current Members (Clicking Removes Users)</label>
+            //    <ol className="members-display">
+            //        { members.length > 0 ? members.map((member, i) => {
+            //                return (
+            //                    // member are removable on click
+            //                    <button className="member-button" key={i} onClick={(e) => handleRemoveMember(member._id) }>
+            //                        <p>{member.firstName} {member.lastName}</p>
+            //                    </button>
+            //                )
+            //            })
+            //            :
+            //            <span>No Members yet</span>
+            //        }
+            //    </ol>
+            //</div>
+            }
             <div className="fluid-container">
                 <button type="submit" className="btn btn-primary">Submit</button>
                 <button className="logout-btn">

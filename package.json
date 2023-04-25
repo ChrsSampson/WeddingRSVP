@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-admin": "node utils/create-admin.js"
   },
   "dependencies": {
     "@dicebear/avatars": "^4.10.5",
     "@dicebear/personas": "^4.10.5",
     "bcryptjs": "^2.4.3",
     "cookies": "^0.8.0",
+    "dotenv": "^16.0.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",
     "install": "^0.13.0",

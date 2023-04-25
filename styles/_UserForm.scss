@@ -7,3 +7,30 @@
     border-radius: .25em;
     width: 30%;
 }
+
+.dropdown-menu{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    max-height: 600px;
+    max-width: 300px;
+    overflow-y: auto;
+
+    .dropdown-item{
+
+    }
+
+}
+
+.members-display{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    align-items: center;
+
+    .member-button{
+        min-width: 300px;
+        max-width: 500px;
+    }
+}
+

@@ -6,4 +6,6 @@ It needs to contain these values
 
 MONGO_URI='[your db uri]'
 SHARED_SECRET='[secret string]'
-AVATAR_SEED="[some string to generate Avatars off of]"
+AVATAR_SEED="[some string to generate Avatars off of]"\
+ADMIN_USERNAME="admin"
+ADMIN_PASSWORD="admin"
