@@ -12,6 +12,7 @@ export default async function handler (req, res) {
         if(method === "GET") {
             // get user info
             const user = await User.findById(id).populate('party');
+            console.log(user)
             if (user) {
                 const response = new Response(200, 'User found', user);
                 res.status(200).json(response);
@@ -47,7 +48,7 @@ export default async function handler (req, res) {
             // delete one party by id
             try{
                 // find and remove user from party
-                const paryWithUser = await Party.findOneAndUpdate({users: id}, {$pull: {users: id}});
+                // const paryWithUser = await Party.findOneAndUpdate({users: id}, {$pull: {users: id}});
                 // delete user
                 const result = await User.findByIdAndDelete(id);
                 // respond

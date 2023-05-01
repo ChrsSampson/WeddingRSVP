@@ -120,8 +120,8 @@ const password = process.env.ADMIN_PASSWORD || '12345';
 const adminUser = new User({
     email:username,
     password,
-    firstName: 'Admin',
-    lastName: 'User',
+    firstName: 'admin',
+    lastName: 'user',
     party: null,
     role: 'admin'
 });

@@ -11,7 +11,6 @@ export default function LoginPage (props) {
     const router = useRouter();
 
     const sumbitHandler = (data) => {
-        console.log(data);
         fetch('/api/auth/login', {
             method: 'POST',
             headers: {

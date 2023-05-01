@@ -35,7 +35,11 @@ export default async function handler (req, res) {
             } else {
                 pid = null;
             }
-            const userData = requestParser({email, firstName, lastName, password, party: pid});
+            
+            const fn = firstName.toLowerCase();
+            const ln = lastName.toLowerCase();
+
+            const userData = requestParser({email, firstName:fn, lastName:ln, password, party: pid});
             const user = new User(userData);
             const result = await user.save()
             // respond

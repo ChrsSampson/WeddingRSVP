@@ -2,6 +2,7 @@
 
 import UserList from '../../components/UserList';
 import PartyList from '../../components/PartyList';
+import SongReport from '../../components/SongReport';
 import {useState} from 'react';
 
 export default function AdminDashboard (props) {
@@ -13,7 +14,7 @@ export default function AdminDashboard (props) {
         // reset
         searchTerm = searchTerm.toLowerCase()
 
-        if(searchTerm === '' || searchTerm === null) {
+        if(!searchTerm || searchTerm === '' || searchTerm === null) {
             setFilteredUsers(props.users)
         }
 
@@ -27,19 +28,31 @@ export default function AdminDashboard (props) {
         setFilteredUsers(newResult)
     }
 
+    function tabController () {
+        // in charge of rendering the correct tab
+        switch(tab) {
+            case 'parties':
+                return <PartyList parties={props.parties} />
+            case 'songs':
+                return <SongReport users={props.users} />
+            default:
+                // default to users
+                return <UserList users={props.users === filteredUsers ? props.users : filteredUsers} handleSearch={handleSearch} />
+        }
+            
+    }
+
     return(
         <div className="container">
             <h1>Organizer Dashboard</h1>
             <section className="tab-container fluid-container">
                 <button className="tab" onClick={() => setTab('users')}>Users</button>
                 <button className="tab" onClick={() => setTab('parties')}>Parties</button>
+                <button className="tab" onClick={() => setTab('songs')}>Song Requests</button>
+                <button className="tab">Food</button>
             </section>
-            <section className="dual-column">
-                {tab === "users" ? 
-                    <UserList users={props.users === filteredUsers ? props.users : filteredUsers} handleSearch={handleSearch} />
-                :
-                    <PartyList parties={props.parties} />
-                }
+            <section className="container">
+                { tabController() }
             </section>
         </div>
     )

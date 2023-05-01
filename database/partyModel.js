@@ -25,7 +25,6 @@ partySchema.pre('save', async function (next) {
         // generate 6 digit invite code, numbers only
         if(this.isNew){
             this.inviteCode = Math.floor(100000 + Math.random() * 900000);
-            console.log(this.inviteCode)
         }
     } catch (err) {
         next(err);

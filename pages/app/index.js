@@ -29,16 +29,16 @@ export async function getServerSideProps (ctx) {
         // parse the current user
         const parsedUser = JSON.parse(user);
 
-        console.log()
+        console.log(parsedUser)
         if(parsedUser.role === 'admin') {
             const fetchedUsers = await (await fetch('http://localhost:3000/api/users')).json()
             users = fetchedUsers.data;
             const fetchedParties = await (await fetch('http://localhost:3000/api/party')).json()
             parties = fetchedParties.data;
         } else {
-            const fetchedParty = await (await fetch(`http://localhost:3000/api/party/${parsedUser.partyId}`)).json()
+            const fetchedParty = await (await fetch(`http://localhost:3000/api/party/${parsedUser.party._id}`)).json()
             party = fetchedParty.data;
-            console.log(party)
+            console.log('party:', party)
         }
 
 

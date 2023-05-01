@@ -10,9 +10,48 @@ export default function RsvpForm (props) {
     const [allergies, setAllergies] = useState(props.allergies || '');
     const [food, setFood] = useState(props.food || '');
     const [song, setSong] = useState(props.song || '');
+    const [error, setError] = useState(null);
+    const [message, setMessage] = useState(null);
+
+    function handleSubmit (e) {
+        e.preventDefault();
+        const data = {
+            attending,
+            allergies: allergies,
+            foodSelection: food !== "" ? food : null,
+            party: props.user.party._id,
+            songRequests: song
+        }
+        
+        fetch(`/api/users/${props.user._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                setError(data.error)
+            } else {
+                setMessage('Saved!')
+            }
+            clearMessages();
+        })   
+        .catch(err => setError(err))
+
+    }
+
+    function clearMessages () {
+        setTimeout(() => {
+            setMessage(null);
+            setError(null);
+        }, 3000);
+    }
 
     return (
-        <form className="UserForm" style={{"borderColor": props.user.color}}>
+        <form className="UserForm" style={{"borderColor": props.user.color}} onSubmit={e => handleSubmit(e)}>
             <div className="fluid-container">
                 <h3>{capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h3>
                 <Image
@@ -47,7 +86,17 @@ export default function RsvpForm (props) {
                 <label htmlFor="song">Song Request</label>
                 <input value={song} onChange={(e) => setSong(e.target.value)} type="text" id="song" />
             </div>
-
+            <div>
+                {
+                    error && <span>{error.message}</span>
+                }
+                {
+                    message && <i>{message}</i>
+                }
+            </div>
+            <div>
+                <button type="submit">Save</button>
+            </div>
         </form>
     )
 }

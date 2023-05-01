@@ -36,7 +36,7 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
         lastName,
         email,
         role,
-        party,
+        party: user.party,
         attending
     }
 
@@ -125,7 +125,7 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
                     <button className="logout-btn" onClick={() => router.push(backRoute)}>
                         Back
                     </button>
-                    {create? null : <button className="danger-btn" onClick={(e) => handleDelete(e, user.id)}>Delete</button>}
+                    {create? null : <button className="danger-btn" onClick={(e) => handleDelete(e, user._id)}>Delete</button>}
                 </div>
             </form>
         </div>
