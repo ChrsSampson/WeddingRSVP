@@ -22,8 +22,11 @@ export default async function handler (req, res) {
             }
         } else if (method === "PUT") {
 
+            // cursed
+
             try{
                 const data = requestParser(req.body);
+                console.log(data)
                 const user = await User.findOneAndUpdate({'_id': id}, data);
                 // if the user has a party and the party does not have the user add the user to the party
                 if(data.party && !user.party){
@@ -38,6 +41,7 @@ export default async function handler (req, res) {
                 }
                 // respond
                 const response = new Response(200, 'success', user);
+                // console.log(response)
                 res.status(response.status).json(response);
             } catch (err) {
                 // respond with error

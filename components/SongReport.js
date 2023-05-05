@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 
 export default function SongReport ({users}) {
@@ -6,14 +6,20 @@ export default function SongReport ({users}) {
     const [songs, setSongs] = useState([]);
 
     function formatList () {
-        const items = users.map(user => {
-            if(user.songRequests){
-                return {song: user.songRequests, source: user.firstName + ' ' + user.lastName}
-            }
+        const u = users.filter(user => {
+            return (user.songRequests !== null) && (user.role === 'user')
+        });
+
+        const r = u.map(user => {
+            return {song: user.songRequests, source: `${user.firstName} ${user.lastName}`}
         })
-        setSongs(items)
+
+        return r;
     }
 
+    useEffect(() => {
+        setSongs (formatList() )
+    }, [users])    
 
     return (
         <section>
@@ -24,9 +30,9 @@ export default function SongReport ({users}) {
                         <th>Source</th>
                     </tr>
                     {
-                        songs.map(song => {
+                       songs && songs.map(song => {
                             return (
-                                <tr>
+                                <tr key={song.song}>
                                     <td>{song.song}</td>
                                     <td>{song.source}</td>
                                 </tr>

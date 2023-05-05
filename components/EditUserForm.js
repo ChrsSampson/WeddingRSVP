@@ -36,7 +36,7 @@ export default function EditUserForm ({user, backRoute, handleSubmit, handleDele
         lastName,
         email,
         role,
-        party: user.party,
+        party: party || user.party,
         attending
     }
 

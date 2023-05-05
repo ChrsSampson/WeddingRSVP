@@ -10,6 +10,11 @@ export default function UserDashboard (props) {
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
+        lookupPartyMembers();
+    }, []);
+
+
+    function lookupPartyMembers () {
         if(props.user.party.users && props.user.party.users.length > 0){
             const m = [];
             for(let u of props.user.party.users){
@@ -19,13 +24,11 @@ export default function UserDashboard (props) {
                 .then(res => res.json())
                 .then(data => {
                     m.push(data.data)
-                    setMembers(m);
+                    setMembers([...m]);
                 })
             }
-            setMembers([...m]);
         }
-
-    }, []);
+    }
 
     return(
         <div className="container">
@@ -35,14 +38,12 @@ export default function UserDashboard (props) {
             </section>
             <section className="container">
                 <article className="fluid-container">
-                    {/* <RsvpForm user={props.user} attending={props.user.attending} allergies={props.user.allergies} /> */}
                     {members.length && members.map((u, i) => {
-                        return <RsvpForm key={i} user={u} attending={u.attending} allergies={u.allergies} songRequest={u.songRequests} />
+                        return <RsvpForm key={i} user={u} foodSelection={u.foodSelection} attending={u.attending} allergies={u.allergies} songRequest={u.songRequests} />
                     })
                     }
                 </article>
             </section>
-
         </div>
     )
 }

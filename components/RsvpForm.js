@@ -8,8 +8,8 @@ export default function RsvpForm (props) {
 
     const [attending, setAttending] = useState(props.attending || false);
     const [allergies, setAllergies] = useState(props.allergies || '');
-    const [food, setFood] = useState(props.food || '');
-    const [song, setSong] = useState(props.song || '');
+    const [food, setFood] = useState(props.foodSelection || '');
+    const [song, setSong] = useState(props.songRequest || '');
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
 
@@ -50,6 +50,15 @@ export default function RsvpForm (props) {
         }, 3000);
     }
 
+    function determinUnsavedChanged () {
+        // if any of the values are different from the props, return true
+        if (attending !== props.attending) return true; 
+        if (allergies !== props.allergies) return true;
+        if (food !== props.foodSelection) return true;
+        if (song !== props.songRequest) return true;
+        return false;
+    }
+
     return (
         <form className="UserForm" style={{"borderColor": props.user.color}} onSubmit={e => handleSubmit(e)}>
             <div className="fluid-container">
@@ -69,10 +78,10 @@ export default function RsvpForm (props) {
                     <option value="true">Yes</option>
                 </select>
             </div>
-            <div>
+            <div className='form-group'>
                 <label htmlFor="food">Entree Selection</label>
                 <select className="form-control" id="food" value={food} onChange={(e) => setFood(e.target.value)}>
-                    <option value={""}>---Select Entree---</option>
+                    <option value={""}>Select Entree</option>
                     <option value={1}>Fillet</option>
                     <option value={2}>Salmon</option>
                     <option value={3}>Nine-Gem</option>
@@ -82,7 +91,7 @@ export default function RsvpForm (props) {
                 <label htmlFor="allergies">Allergies/Restrictions</label>
                 <textarea value={allergies} onChange={(e) => setAllergies(e.target.value)} />
             </div>
-            <div>
+            <div className="form-group">
                 <label htmlFor="song">Song Request</label>
                 <input value={song} onChange={(e) => setSong(e.target.value)} type="text" id="song" />
             </div>
@@ -93,8 +102,11 @@ export default function RsvpForm (props) {
                 {
                     message && <i>{message}</i>
                 }
+                {
+                    determinUnsavedChanged() && <i className="warning-txt">Unsaved Changes</i>
+                }
             </div>
-            <div>
+            <div className='form-group'>
                 <button type="submit">Save</button>
             </div>
         </form>

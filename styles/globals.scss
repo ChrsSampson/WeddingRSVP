@@ -44,6 +44,15 @@ a {
   box-sizing: border-box;
 }
 
+.warning-txt{
+  color: $red-rust;
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  margin: 1em 0;
+}
+
 form{
   min-width: min-content  ;
 }

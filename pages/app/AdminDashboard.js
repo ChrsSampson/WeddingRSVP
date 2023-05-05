@@ -35,6 +35,8 @@ export default function AdminDashboard (props) {
                 return <PartyList parties={props.parties} />
             case 'songs':
                 return <SongReport users={props.users} />
+            case 'food':
+                console.log('food tab')
             default:
                 // default to users
                 return <UserList users={props.users === filteredUsers ? props.users : filteredUsers} handleSearch={handleSearch} />
@@ -49,7 +51,7 @@ export default function AdminDashboard (props) {
                 <button className="tab" onClick={() => setTab('users')}>Users</button>
                 <button className="tab" onClick={() => setTab('parties')}>Parties</button>
                 <button className="tab" onClick={() => setTab('songs')}>Song Requests</button>
-                <button className="tab">Food</button>
+                <button className="tab" onClick={() => setTab('food')}>Food</button>
             </section>
             <section className="container">
                 { tabController() }
