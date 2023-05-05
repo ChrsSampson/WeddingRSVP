@@ -5,6 +5,7 @@ import Navigation from '../../components/Navigation';
 import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
 import connectDB from '../../database/connection';
+import Head from 'next/head';
 
 export async function getServerSideProps (ctx) {
     // connect to database
@@ -56,6 +57,10 @@ export async function getServerSideProps (ctx) {
 export default function App (props) {
 
     return (
+        <>
+        <Head>
+            <title>Chris&Jody 2023 | RSVP</title>
+        </Head>
         <div className="container">
             <Navigation user={props.user} />
             <main className="container-full App">
@@ -65,5 +70,6 @@ export default function App (props) {
                 }
             </main>
         </div>
+        </>
     )
 }

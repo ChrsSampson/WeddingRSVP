@@ -3,6 +3,7 @@
 import UserList from '../../components/UserList';
 import PartyList from '../../components/PartyList';
 import SongReport from '../../components/SongReport';
+import FoodReport from '../../components/FoodReport';
 import {useState} from 'react';
 
 export default function AdminDashboard (props) {
@@ -36,7 +37,7 @@ export default function AdminDashboard (props) {
             case 'songs':
                 return <SongReport users={props.users} />
             case 'food':
-                console.log('food tab')
+                return <FoodReport users={props.users} />
             default:
                 // default to users
                 return <UserList users={props.users === filteredUsers ? props.users : filteredUsers} handleSearch={handleSearch} />

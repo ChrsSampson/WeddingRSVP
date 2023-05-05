@@ -2,12 +2,12 @@
 import UserForm from '../components/UserForm';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
-
+import Head from 'next/head';
 
 export default function LoginPage (props) {
 
     const [code, enableCode] = useState(true);
-    const [message, setMessage] = useState('Your code is displayed in your invitation');
+    const [message, setMessage] = useState('Your invite code is displayed in your invitation');
     const router = useRouter();
 
     const sumbitHandler = (data) => {
@@ -33,14 +33,19 @@ export default function LoginPage (props) {
     }
 
     return (
-        <section className="container-full-centered">
-            <UserForm
-                code={code}
-                enableCode={enableCode}
-                submitHandler={sumbitHandler}
-                message={message}
-                setMessage={setMessage}
-            />
-        </section>
+        <>
+            <Head>
+                <title>RSVP Login | Chris&Jody 2023</title>
+            </Head>
+            <section className="container-full-centered">
+                <UserForm
+                    code={code}
+                    enableCode={enableCode}
+                    submitHandler={sumbitHandler}
+                    message={message}
+                    setMessage={setMessage}
+                />
+            </section>
+        </>
     )
 }

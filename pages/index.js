@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="">
       <Head>
-        <title>Wedding | 2023</title>
+        <title>Chris&Jody 2023 | Welcome</title>
         <meta name="description" content="Sampson Wedding" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

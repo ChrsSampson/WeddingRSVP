@@ -7,7 +7,7 @@ export default function About () {
     return (
         <div>
             <Head>
-                <title>About | C&J 2023</title>
+                <title>About | Chris&Jody 2023</title>
                 <meta name="description" content="Sampson Wedding" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
