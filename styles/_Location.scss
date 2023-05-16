@@ -1,44 +1,90 @@
-.Location-Page{
+.Location-page{
+    
+    .Location-section{
+        border: 4px solid $wild-blue-yonder;
+        border-radius:  .5em;
+        margin-bottom: 2em;
+        padding: 0;
+
+        .content-section-reverse{
+            @media screen and (max-width: 900px) {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+        }
+
+        .content-section{
+            border-radius: .5em;
+        
+            .location-image{
+                border-radius: 0 .2em 0 0;
+                width: 100%;
+            }
+        
+            .location-image-reverse{
+                border-radius: .2em 0 0 .2em;
+                width: 100%;
+            }
+            @media screen and (max-width: 900px) {
+                // display: flex !important;
+                // flex-direction: column !important;
+                // place-content: center;
+                // width: 90%;
+        
+                .location-image{
+                    border-radius: 0 ;
+                    width: 100%;
+                    height: auto;
+                }
+
+                .location-image-reverse{
+                    border-radius: 0;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+    }
 
 }
 
 .Map{
-    border-radius: .5em;
-    border: 0;
+    border-radius:  0 0 .5em .5em;
+    border:  none;
+    width: 100%;
+    padding: none;
+    margin: none;
 
     @media screen and (max-width: 900px) {
-        width: 90%;
+        width: 100%;
     }
 }
 
-.content-section{
-    border: 1px solid $wild-blue-yonder;
-    border-radius: .5em;
-    margin: 5em;
 
-    img{
-        border-radius: 0 .5em .5em 0;
-    }
-
-    @media screen and (max-width: 900px) {
-        // display: flex !important;
-        // flex-direction: column !important;
-        // place-content: center;
-        // width: 90%;
-
-        img{
-            border-radius: 0 0 .5em .5em;
-            width: 100%;
-            height: auto;
-        }
-    }
-}
 
 .location-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1em;
+    padding: 0;
 }
 
+.location-address{
+
+
+    a{
+        background-color: $wild-blue-yonder;
+        padding: .25em .5em;
+        border-radius: .5em;
+        color: $light-gray;
+        font-style: italic;
+        font-weight: 600;
+
+        &:hover{
+            background-color: $dark-blue-gray;
+            color: $light-gray;
+        }
+    }
+}
