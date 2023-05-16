@@ -1,8 +1,6 @@
 // user view for the app, list only memeber of their party and food selections
-
 import capitalize from '../../lib/capitalize.js';
 import RsvpForm from '../../components/RsvpForm.js';
-
 import {useEffect, useState} from 'react';
 
 export default function UserDashboard (props) {
@@ -10,9 +8,10 @@ export default function UserDashboard (props) {
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
-        lookupPartyMembers();
-    }, []);
+       
+    }, [lookupPartyMembers]);
 
+    lookupPartyMembers();
 
     function lookupPartyMembers () {
         if(props.user.party.users && props.user.party.users.length > 0){

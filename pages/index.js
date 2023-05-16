@@ -17,7 +17,7 @@ export default function Home() {
         <Navigation />
         <section className="Home-hero">
           <h1 className="Home-title">This is a big deal</h1>
-          <sub className="Home-sub">00/00/1900</sub>
+          <sub className="Home-sub">08/19/2023</sub>
         </section>
       </main>
     </div>

@@ -3,7 +3,8 @@
         './Home.scss',
         './Navigation.scss',
         './UserBug',
-        './UserForm.scss';
+        './UserForm.scss',
+        './Location.scss';
 
 // ----Root Styles -------
 
@@ -212,6 +213,10 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1em;
+
+  @media (max-width: 900px){
+    grid-template-columns: 1fr;
+  }
 }
 
 .toolbar{

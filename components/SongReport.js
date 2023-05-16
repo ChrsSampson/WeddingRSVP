@@ -19,7 +19,7 @@ export default function SongReport ({users}) {
 
     useEffect(() => {
         setSongs (formatList() )
-    }, [users])    
+    }, [])    
 
     return (
         <section>
@@ -31,8 +31,9 @@ export default function SongReport ({users}) {
                     </tr>
                     {
                        songs && songs.map(song => {
+                            const key = Math.random() * 1000 + song.song;
                             return (
-                                <tr key={song.song}>
+                                <tr key={key}>
                                     <td>{song.song}</td>
                                     <td>{song.source}</td>
                                 </tr>

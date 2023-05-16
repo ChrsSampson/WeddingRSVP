@@ -2,7 +2,7 @@
 
 .Home{
   padding: 2em;
-  background-image: url('/static/stockPhoto.jpg');
+  background-image: url('/static/J+C_023.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -18,7 +18,8 @@
   }
 
   .Home-sub{
-    color: $wild-blue-yonder;
+    color: rgb(75, 75, 75);
+    font-weight: bold;
   }
 }
 

@@ -5,22 +5,22 @@ import Link from 'next/link';
 
 export default function Navigation (props) {
     return (
-        <nav className="Navigation">
+        <nav className={props.light ? "Navigation-light" : "Navigation"}>
             <ul className="nav-list">
                 <li className="nav-item">
-                    <a className="nav-link" href="/about">
+                    <Link className="nav-link" href="/about">
                         About
-                    </a>
+                    </Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/location">
+                    <Link className="nav-link" href="/location">
                         Location
-                    </a>
+                    </Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/app">
+                    <Link className="nav-link" href="/app">
                         RSVP
-                    </a>
+                    </Link>
                 </li>
             </ul>
             <UserBug user={props.user} />

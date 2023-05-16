@@ -31,16 +31,16 @@ export default function PartyForm ({create, party, handleSubmit, handleDelete, m
             })
             .catch(err => setError(err.message));
         }
-    }, [])
+    }, [create])
 
-    useEffect(() => {
-        filterUsers(term);
-    }, [term])
+    // useEffect(() => {
+    //     filterUsers(term);
+    // }, [term])
 
-    function filterUsers (term) {
-        const filtered = users.filter(user => user.firstName.toLowerCase().includes(term.toLowerCase()));
-        setFiltered(filtered);
-    }
+    // function filterUsers (term) {
+    //     const filtered = users.filter(user => user.firstName.toLowerCase().includes(term.toLowerCase()));
+    //     setFiltered(filtered);
+    // }
 
     function handleRemoveMember (id) {
         const newMembers = members.filter(member => member._id !== id);

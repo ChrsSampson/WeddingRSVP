@@ -6,7 +6,6 @@ import {useEffect, useState} from 'react';
 
 export default function FoodReport ({users}) {
 
-    const [food, setFood] = useState([]);
     const [quantity, setQuantity] = useState({steak: 0, salmon: 0, nineGem: 0});
 
     function formatList () {
@@ -17,13 +16,14 @@ export default function FoodReport ({users}) {
 
         users.forEach(element => {
             const selection = parseInt(element.foodSelection)
-
-            if(selection === 1) {
-                steak++;
-            } else if(selection === 2) {
-                salmon++;
-            } else if(selection === 3) {
-                nineGem++;
+            if(element.attending){
+                if(selection === 1) {
+                    steak++;
+                } else if(selection === 2) {
+                    salmon++;
+                } else if(selection === 3) {
+                    nineGem++;
+                }
             }
         });
 
@@ -47,7 +47,7 @@ export default function FoodReport ({users}) {
 
     useEffect(() => {
         formatList()
-    }, [users])    
+    }, [])    
 
     return (
         <section className='container'>
@@ -68,9 +68,12 @@ export default function FoodReport ({users}) {
                         <th>Person</th>
                     </tr>
                     {
-                       users && users.map(user => {
+                       users && users.map((user, i) => {
+                            // random key
+                            const key = Math.random() * 1000 + user._id;
+
                             return (
-                                <tr key={user.id + user.foodSelection}>
+                                <tr key={key}>
                                     <td>{convertFood(user.foodSelection)}</td>
                                     <td>{user.allergies || "None Specified"}</td>
                                     <td>{user.firstName} {user.lastName}</td>

@@ -1,0 +1,44 @@
+.Location-Page{
+
+}
+
+.Map{
+    border-radius: .5em;
+    border: 0;
+
+    @media screen and (max-width: 900px) {
+        width: 90%;
+    }
+}
+
+.content-section{
+    border: 1px solid $wild-blue-yonder;
+    border-radius: .5em;
+    margin: 5em;
+
+    img{
+        border-radius: 0 .5em .5em 0;
+    }
+
+    @media screen and (max-width: 900px) {
+        // display: flex !important;
+        // flex-direction: column !important;
+        // place-content: center;
+        // width: 90%;
+
+        img{
+            border-radius: 0 0 .5em .5em;
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.location-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+

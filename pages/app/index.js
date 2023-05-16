@@ -30,7 +30,6 @@ export async function getServerSideProps (ctx) {
         // parse the current user
         const parsedUser = JSON.parse(user);
 
-        console.log(parsedUser)
         if(parsedUser.role === 'admin') {
             const fetchedUsers = await (await fetch('http://localhost:3000/api/users')).json()
             users = fetchedUsers.data;
