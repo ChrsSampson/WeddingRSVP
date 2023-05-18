@@ -44,7 +44,7 @@ export async function getServerSideProps (ctx) {
 
         return {
             props: {
-                user: parsedUser,
+                user: parsedUser || null,
                 users: users || [],
                 parties: parties || [],
                 party: party || null

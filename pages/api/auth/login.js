@@ -3,8 +3,9 @@
 import User from '../../../database/userModel';
 import Response from '../../../lib/response';
 import connectDB from '../../../database/connection';
-import bctypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import Cookies from 'cookies'
+
 
 export default async function handler (req, res) {
     const {method} = req;
@@ -18,7 +19,7 @@ export default async function handler (req, res) {
                     const error = new Error('User not found');
                     throw error;
                 } else {
-                    const result = await bctypt.compare(password, user.password);
+                    const result = await bcrypt.compare(password, user.password);
                     if(result){
                         const userInfo = {
                             _id: user._id,
@@ -44,7 +45,7 @@ export default async function handler (req, res) {
                         const response = new Response(200, 'success', userInfo);
                         res.status(response.status).json(response);
                     } else {
-                        const error = new Error('Incorrect Invite Info');
+                        const error = new Error('Incorrect Credentials');
                         throw error;
                     }
                 }

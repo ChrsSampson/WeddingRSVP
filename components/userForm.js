@@ -15,7 +15,7 @@ export default function UserForm (props) {
         e.preventDefault();
         const emailInfo = {
             email: email.toLowerCase(),
-            password: password.toLowerCase()
+            password: password
         }
 
         const codeInfo = {
