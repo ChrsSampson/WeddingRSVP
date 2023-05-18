@@ -2,6 +2,7 @@
 import Head from  'next/head';
 import Navigation from '../components/Navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function About () {
     return (
@@ -24,9 +25,9 @@ export default function About () {
                                 <div className="location-address">
                                     <h3>St. Josephs Park</h3>
                                     <p>St. Josephs Park. 118 Pleasant St,<br /> Rochester, NY 14604</p>
-                                    <a href="https://www.rochesterparks.org/rochester-city-parks/st-josephs-park/">
+                                    <Link href="https://www.rochesterparks.org/rochester-city-parks/st-josephs-park/">
                                         More Infomation
-                                    </a>
+                                    </Link>
                                     <p><sub>Note: Street Parking is limited, <br/> There is a parking garage across the street</sub></p>
                                 </div>
                             </article>
@@ -43,9 +44,9 @@ export default function About () {
                                 <div className="location-address">
                                     <h3>The Wilder Room</h3>
                                     <p>120 East Ave 2nd floor, Rochester, NY 14604<br /> Rochester, NY 14604</p>
-                                    <a href="https://www.thewilderroom.com/">
+                                    <Link href="https://www.thewilderroom.com/">
                                         More Infomation
-                                    </a>
+                                    </Link>
                                     <p>
                                         <sub>
                                         Note: The East End parking Garage is located at <br />

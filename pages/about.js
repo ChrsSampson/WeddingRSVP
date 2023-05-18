@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import {useEffect, useState} from 'react';
 import {FiPlusSquare, FiMinusSquare, FiCalendar, FiFeather, FiBook, FiBriefcase} from 'react-icons/fi';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function About () {
 
@@ -49,19 +50,19 @@ export default function About () {
                             <ul className="list-items">
                                 <li>
                                     <FiCalendar />
-                                    <a href="#plan">The Plan</a>
+                                    <Link href="#plan">The Plan</Link>
                                 </li>
                                 <li>
                                     <FiBriefcase />
-                                    <a href="#hotel">Hotel Discounts</a>
+                                    <Link href="#hotel">Hotel Discounts</Link>
                                 </li>
                                 <li>
                                     <FiBook />
-                                    <a href="#Dress">Dress Code</a>
+                                    <Link href="#Dress">Dress Code</Link>
                                 </li>
                                 <li>
                                     <FiFeather />
-                                    <a href="#registry">Registry</a>
+                                    <Link href="#registry">Registry</Link>
                                 </li>
                             </ul>
                             </>
@@ -91,10 +92,10 @@ export default function About () {
                             <h2>Hotel Discount</h2>
                                 <div className='column'>
                                     <p>
-                                        We have a social room discounted rate at the <a href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</a>. There is also a discount for AAA members. ( Those probably don't stack but you can try! )
+                                        We have a social room discounted rate at the <Link href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</Link>. There is also a discount for AAA members. ( Those probably don't stack but you can try! )
                                     </p>
                                     <sub>
-                                        <a href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</a> <br />
+                                        <Link href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</Link> <br />
                                         0.4 miles from the Wilder Room
                                     </sub>
                                     <iframe className="About-Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.5702282494726!2d-77.5957435825562!3d43.1555533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d6b525bb0ef477%3A0xecfae184905324e!2sCourtyard%20by%20Marriott%20Rochester%20Downtown!5e0!3m2!1sen!2sus!4v1684430783747!5m2!1sen!2sus" width="600" height="450" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
@@ -109,19 +110,19 @@ export default function About () {
                                     </p>
                                     <div className="hotel-list">
                                         <div className='hotel'>
-                                            <a href="https://www.school31lofts.com/">School 31 Lofts</a>
+                                            <Link href="https://www.school31lofts.com/">School 31 Lofts</Link>
                                             <sub>.8 miles from the Wilder Room</sub>
                                         </div>
                                         <div className='hotel'>
-                                            <a href="https://www.strathallan.com/">The Strathallan Hotel</a>
+                                            <Link href="https://www.strathallan.com/">The Strathallan Hotel</Link>
                                             <sub>.6 miles from the Wilder Room</sub>
                                         </div>
                                         <div className='hotel'>
-                                            <a href="https://www.ihg.com/holidayinn/hotels/us/en/rochester/rocny/hoteldetail">The Holiday Inn</a>
+                                            <Link href="https://www.ihg.com/holidayinn/hotels/us/en/rochester/rocny/hoteldetail">The Holiday Inn</Link>
                                             <sub>.6 miles from the Wilder Room</sub>
                                         </div>
                                         <div className='hotel'>
-                                            <a href="https://www.hyatt.com/en-US/hotel/new-york/hyatt-regency-rochester/roche">Hyatt Regency Rochester</a>
+                                            <Link href="https://www.hyatt.com/en-US/hotel/new-york/hyatt-regency-rochester/roche">Hyatt Regency Rochester</Link>
                                             <sub>.4 miles from the Wilder Room</sub>
                                         </div>
                                     </div>
@@ -185,7 +186,7 @@ export default function About () {
                                 </p>
                                 <div className="qr-container">
                                     <div className='qr-card'>
-                                        <h3><a href="https://venmo.com/code?user_id=3341953076822016954&created=1684376724">Venmo</a></h3>
+                                        <h3><Link href="https://venmo.com/code?user_id=3341953076822016954&created=1684376724">Venmo</Link></h3>
                                         <div>
                                            <Image className='qr-code' src="/static/qrcode.png" width={1000} height={1000} />
                                         </div>
