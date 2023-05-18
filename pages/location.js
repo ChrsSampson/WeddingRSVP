@@ -19,7 +19,7 @@ export default function About () {
 
                     <div className="Location-section">
                         <div className="dual-column content-section">
-                            <article className="location-content">
+                            <article className="location-content" id="park">
                                 <h2>The Ceremony</h2>
                                 <div className="location-address">
                                     <h3>St. Josephs Park</h3>
@@ -35,7 +35,7 @@ export default function About () {
                         <iframe className="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.3844391578536!2d-77.60907892343542!3d43.15945388422428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d6b5aca050e689%3A0xc4a1520ebad20e54!2s118%20Pleasant%20St%2C%20Rochester%2C%20NY%2014604!5e0!3m2!1sen!2sus!4v1684246781668!5m2!1sen!2sus" width="750" height="450" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
-                    <div className="Location-section">
+                    <div className="Location-section" id="wilder">
                         <div className="dual-column content-section content-section-reverse">
                         <Image className="location-image-reverse" src={'/static/wilder.jpg'} alt="Church" width={500} height={375} />
                             <article className="location-content">

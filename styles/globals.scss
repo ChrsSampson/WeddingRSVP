@@ -210,6 +210,13 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   padding: .5em 0;
 }
 
+.column{
+  display: flex;
+  flex-direction: column;
+  gap: .25em 0;
+  padding: .5em 0;
+}
+
 .dual-column{
   display: grid;
   grid-template-columns: 1fr 1fr;
