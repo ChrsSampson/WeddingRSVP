@@ -20,10 +20,16 @@
 }
 
 
-
+.About-Map{
+    border-radius: .5em;
+    border: 0;
+    margin: 0 auto;
+    height: 15em;
+    width: 80%;
+}
 
 .TOC-Container{
-    max-height: 20%;
+    max-height: 22em;
     border: 1px solid $light-gray;
     border-radius:  .5em;
     padding: .5em;
@@ -113,5 +119,52 @@
         width: 4em;
         height: 4em;
         border-radius: .5em;
+    }
+}
+
+.hotel-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    align-items: center;
+    gap: 2em;
+
+    @media screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+
+    .hotel{
+        display: flex;
+        flex-direction: column;
+        border-radius: .5em;
+        background-color: $wild-blue-yonder;
+        padding: .5em 1em;
+        width: fit-content;
+
+        a{
+            text-decoration: none;
+            color: $light-gray;
+            font-weight: 600;
+        }
+    }
+}
+
+.qr-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    
+    .qr-card{
+        border: 2px solid $light-gray;
+        background-color: $wild-blue-yonder;
+        padding: 1em;
+        border-radius: 1em;
+    }
+
+    .qr-code{
+        border: 1px solid $wild-blue-yonder;
+        width: 10em;
+        height: 10em;
     }
 }

@@ -10,6 +10,7 @@
     "create-admin": "node utils/create-admin.js"
   },
   "dependencies": {
+    "@devmehq/react-qr-code": "^1.0.8",
     "@dicebear/avatars": "^4.10.5",
     "@dicebear/personas": "^4.10.5",
     "bcryptjs": "^2.4.3",

@@ -227,6 +227,13 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   }
 }
 
+.divider{
+  width: 80%;
+  height: 1px;
+  margin: .5em auto;
+  background-color: $light-gray;
+}
+
 .toolbar{
   display: flex;
   justify-content: space-between;
