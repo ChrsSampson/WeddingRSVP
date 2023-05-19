@@ -3,35 +3,65 @@ import User from '../../../database/userModel.js';
 import EditUserForm from '../../../components/EditUserForm.js';
 import {useRouter} from 'next/router';
 import {useState} from 'react'
+import Cookies from 'cookies';
 
-export async function getStaticProps (ctx) {
+
+export async function getServerSideProps (ctx) {
     const id = ctx.params.id;
 
-    // data to be sent to the client
-    const user = JSON.stringify ( await User.findById(id).populate('party') );
+    // check if user is logged in
+    const cookies = new Cookies(ctx.req, ctx.res);
+    const session = cookies.get('session')
+    const user = cookies.get('user')
 
-    return {
-        props: {
-            id: id,
-            user: JSON.parse(user)
+    if((session === 'false' || !session) || !user) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false
+            }
+        }
+    }
+
+    try{
+        // data to be sent to the client
+        const user = JSON.stringify ( await User.findById(id).populate('party') );
+
+        if(!user) {
+            return {
+                redirect: {
+                    destination: '/login',
+                    permanent: false
+                }
+            }
+        }
+
+        return {
+            props: {
+                id: id,
+                user: JSON.parse(user)
+            }
+        }
+    } catch (err) {
+        return {
+            notFound: true
         }
     }
 }
 
-export function getStaticPaths (ctx) {
+// export function getStaticPaths (ctx) {
 
-    return {
-        paths: [
-            { params: { id: '1' } },
-        ],
-        fallback: true
-    }
-}
+//     return {
+//         paths: [
+//             { params: { id: "1" } },
+//         ],
+//         fallback: true
+//     }
+// }
 
-export default function UserDetails (props) {
+export default function UserDetails ({user}) {
     const [message, setMessage] = useState('');
 
-    const user = props.user;
     const router = useRouter();
 
     const id = router.query.id

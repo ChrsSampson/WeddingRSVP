@@ -58,7 +58,7 @@ export default function About () {
                             </article>
 
                         </div>
-                        <iframe className="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.494706759247!2d-77.60362622338359!3d43.157138884372436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d6b52c7aa4f38d%3A0x947ebd7beaaa94aa!2sThe%20Wilder%20Room!5e0!3m2!1sen!2sus!4v1684273968388!5m2!1sen!2sus" width="600" width="750" height="450" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe className="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.494706759247!2d-77.60362622338359!3d43.157138884372436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d6b52c7aa4f38d%3A0x947ebd7beaaa94aa!2sThe%20Wilder%20Room!5e0!3m2!1sen!2sus!4v1684273968388!5m2!1sen!2sus" width="600" height="450" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
                 </section>

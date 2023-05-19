@@ -5,30 +5,58 @@ import EditPartyForm from '../../../components/EditPartyForm';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useState} from 'react';
+import Cookies from 'cookies';
 
-export async function getStaticProps (ctx) {
+const blankParty = {
+    _id: 'placehpolderId',
+    name: 'Placeholder',
+    users: [],
+    inviteCode: 123456,
+}
+
+export async function getServerSideProps (ctx) {
     const id = ctx.params.id;
 
-    // data to be sent to the client
-    const party = JSON.stringify ( await Party.findById(id).populate('users') );
+    // check if user is logged in
+    const cookies = new Cookies(ctx.req, ctx.res);
+    const session = cookies.get('session')
+    const user = cookies.get('user')
 
-    return {
-        props: {
-            id: id,
-            party: JSON.parse(party)
+    // data to be sent to the client
+    let users, parties, party = '';
+
+    if((session === 'false' || !session) || !user) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false
+            }
         }
     }
-}
 
-export function getStaticPaths (ctx) {
+    try{
+        // data to be sent to the client
+        const party = JSON.stringify ( await Party.findById(id).populate('users') );
 
-    return {
-        paths: [
-            { params: { id: '1' } },
-        ],
-        fallback: true
+        return {
+            props: {
+                id: id,
+                party: JSON.parse(party) || blankParty,
+            }
+        }
+    } catch (err) {
+       return {notFound: true}
     }
 }
+
+// export function getStaticPaths (ctx) {
+//     return {
+//         paths: [
+//             { params: { id: '1' } },
+//         ],
+//         fallback: true
+//     }
+// }
 
 export default function PartyEditPage (props) {
     const router = useRouter();

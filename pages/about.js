@@ -76,13 +76,13 @@ export default function About () {
                             <h3>Saturday, August 19</h3>
                             <div className='divider' />
                             <p>
-                                4:00pm - Wedding Ceremony <a href="/location#park">@St. Joseph's Park</a>
+                                4:00pm - Wedding Ceremony <Link href="/location#park">@St. Joseph&apos;s Park</Link>
                             </p>
                             <p>
-                                5:00pm - Cocktail Hour <a href="/location#wilder">@The Wilder Room</a>
+                                5:00pm - Cocktail Hour <Link href="/location#wilder">@The Wilder Room</Link>
                             </p>
                             <p>
-                                6:00pm - Reception <a href="/location#wilder">@The Wilder Room</a>
+                                6:00pm - Reception <Link href="/location#wilder">@The Wilder Room</Link>
                             </p>
                             <p>
                                 11:00pm - Reception Ends
@@ -92,7 +92,7 @@ export default function About () {
                             <h2>Hotel Discount</h2>
                                 <div className='column'>
                                     <p>
-                                        We have a social room discounted rate at the <Link href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</Link>. There is also a discount for AAA members. ( Those probably don't stack but you can try! )
+                                        We have a social room discounted rate at the <Link href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</Link>. There is also a discount for AAA members. ( Those probably don&apos;t stack but you can try! )
                                     </p>
                                     <sub>
                                         <Link href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</Link> <br />
@@ -188,7 +188,7 @@ export default function About () {
                                     <div className='qr-card'>
                                         <h3><Link href="https://venmo.com/code?user_id=3341953076822016954&created=1684376724">Venmo</Link></h3>
                                         <div>
-                                           <Image className='qr-code' src="/static/qrcode.png" width={1000} height={1000} />
+                                           <Image alt="Venmo qrode" className='qr-code' src="/static/qrcode.png" width={1000} height={1000} />
                                         </div>
                                     </div>
                                 </div>

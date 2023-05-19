@@ -8,10 +8,8 @@ export default function UserDashboard (props) {
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
-       
-    }, [lookupPartyMembers]);
-
-    lookupPartyMembers();
+        lookupPartyMembers();
+    }, []);
 
     function lookupPartyMembers () {
         if(props.user.party.users && props.user.party.users.length > 0){

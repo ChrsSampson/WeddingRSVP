@@ -27,27 +27,40 @@ export async function getServerSideProps (ctx) {
             }
         }
     } else {
-        // parse the current user
-        const parsedUser = JSON.parse(user);
+        try{
+            // parse the current user
+            const parsedUser = JSON.parse(user);
 
-        if(parsedUser.role === 'admin') {
-            const fetchedUsers = await (await fetch('http://localhost:3000/api/users')).json()
-            users = fetchedUsers.data;
-            const fetchedParties = await (await fetch('http://localhost:3000/api/party')).json()
-            parties = fetchedParties.data;
-        } else {
-            const fetchedParty = await (await fetch(`http://localhost:3000/api/party/${parsedUser.party._id}`)).json()
-            party = fetchedParty.data;
-            console.log('party:', party)
-        }
+            if(!parsedUser) {
+                return {
+                    redirect: {
+                        destination: '/login',
+                        permanent: false
+                    }
+                }
+            }
 
+            if(parsedUser.role === 'admin') {
+                const fetchedUsers = await (await fetch('http://localhost:3000/api/users')).json()
+                users = fetchedUsers.data;
+                const fetchedParties = await (await fetch('http://localhost:3000/api/party')).json()
+                parties = fetchedParties.data;
+            } else {
+                const fetchedParty = await (await fetch(`http://localhost:3000/api/party/${parsedUser.party._id}`)).json()
+                party = fetchedParty.data;
+            }
 
-        return {
-            props: {
-                user: parsedUser || null,
-                users: users || [],
-                parties: parties || [],
-                party: party || null
+            return {
+                props: {
+                    user: parsedUser,
+                    users: users || [],
+                    parties: parties || [],
+                    party: party || []
+                }
+            }
+        } catch (err) {
+            return {
+                notFound: true
             }
         }
     }

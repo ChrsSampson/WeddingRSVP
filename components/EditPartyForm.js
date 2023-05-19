@@ -3,8 +3,14 @@
 import {useState, useEffect} from 'react'
 import Link from 'next/link'
 
+const blankParty = {
+    _id: 'placehpolderId',
+    name: 'Placeholder',
+    users: [],
+    inviteCode: 123456,
+}
 
-export default function PartyForm ({create, party, handleSubmit, handleDelete, message, backRoute}) {
+export default function PartyForm ({create, party=blankParty, handleSubmit, handleDelete, message, backRoute}) {
 
     const [term, setTerm] = useState('');
     const [users, setUsers] = useState([]);
