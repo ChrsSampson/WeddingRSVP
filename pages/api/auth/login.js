@@ -50,7 +50,8 @@ export default async function handler (req, res) {
                     }
                 }
             } else if (firstName && lastName && inviteCode) {
-                console.log(firstName, lastName, inviteCode)
+                console.log(firstName, lastName)
+                console.log(await User.findOne({firstName, lastName}))
                 const user = await User.findOne({firstName, lastName}).populate('party');
                 if(!user){
                     const response = new Response(404, 'error', null, 'User not found');

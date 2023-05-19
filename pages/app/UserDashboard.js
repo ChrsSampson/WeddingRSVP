@@ -6,6 +6,8 @@ import { redirect } from 'next/navigation';
 
 export default function UserDashboard (props) {
 
+    console.log(props.user)
+
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
@@ -27,6 +29,8 @@ export default function UserDashboard (props) {
             }
         }
     }
+
+  
 
     if(props.user){
         return(

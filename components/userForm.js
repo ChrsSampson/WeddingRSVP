@@ -19,8 +19,8 @@ export default function UserForm (props) {
         }
 
         const codeInfo = {
-            firstName: firstName.toLowerCase(),
-            lastName: lastName.toLowerCase(),
+            firstName: firstName.toLowerCase().trim(),
+            lastName: lastName.toLowerCase().trim(),
             inviteCode: partyCode
         }
 

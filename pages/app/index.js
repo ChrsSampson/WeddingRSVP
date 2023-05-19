@@ -6,6 +6,8 @@ import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
 import connectDB from '../../database/connection';
 import Head from 'next/head';
+import User from '../../database/userModel';
+import Party from '../../database/partyModel';
 
 export async function getServerSideProps (ctx) {
     // connect to database
@@ -29,57 +31,57 @@ export async function getServerSideProps (ctx) {
     } else {
         try{
             // parse the current user
-            const parsedUser = JSON.parse(user);
+            const parsedUser = JSON.parse (user );
 
-            if(!parsedUser || !parsedUser._id) {
-                return {
-                    redirect: {
-                        destination: '/login',
-                        permanent: false
-                    }
-                }
-            }
+            // if(!parsedUser || !parsedUser._id) {
+            //     return {
+            //         redirect: {
+            //             destination: '/login',
+            //             permanent: false
+            //         }
+            //     }
+            // }
 
             if(parsedUser.role === 'admin') {
-                const fetchedUsers = await (await fetch('http://localhost:3000/api/users')).json()
-                users = fetchedUsers.data;
-                const fetchedParties = await (await fetch('http://localhost:3000/api/party')).json()
-                parties = fetchedParties.data;
+                users = await (await User.find({}).populate('party'));
+
+                parties = await (await Party.find({}).populate('users'));
+
             } else {
-                const fetchedParty = await (await fetch(`http://localhost:3000/api/party/${parsedUser.party._id}`)).json()
-                party = fetchedParty.data;
+                party = await (await Party.findById(parsedUser.party._id).populate('users'));
             }
+
 
             return {
                 props: {
-                    user: parsedUser,
-                    users: users || [],
-                    parties: parties || [],
-                    party: party || []
+                    "user":  parsedUser,
+                    "users":  JSON.stringify( users) || [],
+                    "parties":  JSON.stringify (parties) || [],
+                    "party": JSON.stringify( party) || []
                 }
             }
         } catch (err) {
-            return {
-                notFound: true
-            }
+            console.log(err)
+            // return {
+            //     notFound: true
+            // }
         }
     }
 }
 
-const blankUser = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    party: [],
-    role: 'user',
-    foodSelection: '',
-    allergies: '',
-    songRequests: '',
-    attending: false
-}
+// const blankUser = {
+//     firstName: '',
+//     lastName: '',
+//     email: '',
+//     party: [],
+//     role: 'user',
+//     foodSelection: '',
+//     allergies: '',
+//     songRequests: '',
+//     attending: false
+// }
 
-export default function App ({user=blankUser, users, parties, party}) {
-
+export default function App ({user, users, parties, party}) {
 
     return (
         <>
@@ -87,11 +89,11 @@ export default function App ({user=blankUser, users, parties, party}) {
             <title>Chris&Jody 2023 | RSVP</title>
         </Head>
         <div className="container">
-            <Navigation user={user} />
+            <Navigation user={ user} />
             <main className="container-full App">
                 {user.role === "user" ?
-                    <UserDashboard user={user} party={party}  /> :
-                    <AdminDashboard user={user} users={users} parties={parties}  />
+                    <UserDashboard user={user} party={JSON.parse( party )}  /> :
+                    <AdminDashboard user={user} users={JSON.parse( users) } parties={JSON.parse( parties) }  />
                 }
             </main>
         </div>
