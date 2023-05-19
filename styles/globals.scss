@@ -208,6 +208,16 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   flex-direction: column;
   gap: .25em 0;
   padding: .5em 0;
+
+  input[type=number] {
+    -mox-appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 }
 
 .column{
@@ -239,4 +249,16 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
   justify-content: space-between;
   align-items: center;
   margin: .5em 0;
+}
+
+.RSVP-holder{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  justify-content: center;
+  place-items: center;
+
+  @media (max-width: 900px){
+    grid-auto-flow: row;
+  }
 }

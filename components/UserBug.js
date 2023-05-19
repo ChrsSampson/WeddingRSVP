@@ -33,9 +33,6 @@ export default function UserBug (props) {
                 onMouseEnter={() => setShowButton(true)}
                 onMouseLeave={() => setShowButton(false)}
                 className="UserBug"
-                style={{
-                    borderColor: props.user.color
-                }}
             >
                 <div className="user-avatar-wrapper">
                     <Image
@@ -52,10 +49,9 @@ export default function UserBug (props) {
                         flexDirection: 'column',
                         alignItems: "center",
                         gap: '0.5em',
-                        paddingRight: '0.5em'
+                        padding: ' 0 0.5em',
                         }}
                     >
-                    <span className="user-name">{capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</span>
                     <button
                         style={{
 

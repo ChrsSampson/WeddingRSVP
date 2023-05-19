@@ -1,17 +1,18 @@
 // form where users can RSVP and provide additional info
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import capitalize from '../lib/capitalize';
 import Image from 'next/image';
 
 export default function RsvpForm (props) {
 
     const [attending, setAttending] = useState(props.attending || false);
-    const [allergies, setAllergies] = useState(props.allergies || '');
-    const [food, setFood] = useState(props.foodSelection || '');
-    const [song, setSong] = useState(props.songRequest || '');
+    const [allergies, setAllergies] = useState(props.allergies ? props.allergies : null);
+    const [food, setFood] = useState(props.foodSelection ? props.foodSelection : null);
+    const [song, setSong] = useState(props.songRequest ? props.songRequest :  null);
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
+    const [changes, setChanges] = useState(false);
 
     function handleSubmit (e) {
         e.preventDefault();
@@ -28,8 +29,7 @@ export default function RsvpForm (props) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
-        })
+            body: JSON.stringify(data)        })
         .then(res => res.json())
         .then(data => {
             if (data.error) {
@@ -50,19 +50,32 @@ export default function RsvpForm (props) {
         }, 3000);
     }
 
-    function determinUnsavedChanged () {
+    useEffect(() => {
+        if (determineUnsavedChanged() ) {
+            setChanges(true);
+        } else {
+            setChanges(false);
+        }
+    }, [attending, allergies, food, song])
+
+    function determineUnsavedChanged () {
         // if any of the values are different from the props, return true
+        console.log(attending === props.attending)
+        console.log(allergies=== props.allergies)
+        console.log(food === props.foodSelection)
+        console.log(song === props.songRequest)
+
         if (attending !== props.attending) return true; 
-        if (allergies !== props.allergies) return true;
-        if (food !== props.foodSelection) return true;
-        if (song !== props.songRequest) return true;
+        if (allergies !== props.allergies ||  allergies !== null ) return true;
+        if (food !== props.foodSelection || food !== null ) return true;
+        if (song !== props.songRequest || song !== null ) return true;
         return false;
     }
 
     return (
-        <form className="UserForm" style={{"borderColor": props.user.color}} onSubmit={e => handleSubmit(e)}>
+        <form className="UserForm" onSubmit={e => handleSubmit(e)}>
             <div className="fluid-container">
-                <h3>{capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h3>
+                <h4>{capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h4>
                 <Image
                         className="user-avatar"
                         src={`https://avatars.dicebear.com/api/personas/${props.user.firstName + props.user.lastName}.svg`}
@@ -102,9 +115,9 @@ export default function RsvpForm (props) {
                 {
                     message && <i>{message}</i>
                 }
-                {
-                    determinUnsavedChanged() && <i className="warning-txt">Unsaved Changes</i>
-                }
+                {/* {
+                    changes ?  <i className="warning-txt">Unsaved Changes</i> : null
+                } */}
             </div>
             <div className='form-group'>
                 <button type="submit">Save</button>

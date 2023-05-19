@@ -10,7 +10,6 @@ export default function UserForm (props) {
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
 
-
     const submitHandler = (e) => {
         e.preventDefault();
         const emailInfo = {
@@ -108,9 +107,9 @@ export default function UserForm (props) {
                     />
                 </div>
             )}
-            <div className="fluid-container">
-                <input type="submit" className="btn btn-primary" value="Submit" />
-                <button className="btn"
+            <div className="fluid-container form-btn-container">
+                <input type="submit" className="btn btn-primary form-btn" value="Submit" />
+                <button className="btn form-btn form-btn"
                     onClick={(e) => switchMode(e)}>
                     {props.code ? 'Login with Email' : 'Login with Code'}
                 </button>

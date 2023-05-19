@@ -89,8 +89,8 @@ export default function App ({user, users, parties, party}) {
             <title>Chris&Jody 2023 | RSVP</title>
         </Head>
         <div className="container">
-            <Navigation user={ user} />
-            <main className="container-full App">
+            <Navigation user={ user} light />
+            <main className="container App">
                 {user.role === "user" ?
                     <UserDashboard user={user} party={JSON.parse( party )}  /> :
                     <AdminDashboard user={user} users={JSON.parse( users) } parties={JSON.parse( parties) }  />

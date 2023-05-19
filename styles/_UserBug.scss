@@ -4,19 +4,23 @@
     position: absolute;
     right: 5%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: .5em;
-    margin-top: 1em;
     background-color: transparent;
     border-radius: .25em;
     overflow: hidden;
-    transition: all 0.5s;
-    animation: fadeIn;
+    margin-bottom: 1em;
+    background-color: $wild-blue-yonder;
+
+    @media screen and (max-width: 600px){
+        right: 0;
+    }
+        
 
     &:hover{
-        transition: all 0.5s;
-        animation: fadeIn;
+        cursor: pointer;
         border: 2px solid;
 
         .user-name{
@@ -24,6 +28,8 @@
         }
 
         button{
+            cursor: pointer;
+            margin: .2em auto;
             opacity: 1;
         }
     }
@@ -36,7 +42,6 @@
 
         .user-avatar{
             padding: .5em;
-            transition: font-size 0.5s;
         }
     }
 
@@ -46,7 +51,6 @@
         font-size: 1em;
         font-weight: 600;
         color: $light-gray;
-        transition: opacity 1s fadeIn;
     }
 
     button{

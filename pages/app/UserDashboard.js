@@ -6,8 +6,6 @@ import { redirect } from 'next/navigation';
 
 export default function UserDashboard (props) {
 
-    console.log(props.user)
-
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
@@ -40,7 +38,7 @@ export default function UserDashboard (props) {
                     <h2>Party of {props.user.party.users.length}</h2>
                 </section>
                 <section className="container">
-                    <article className="fluid-container">
+                    <article className="fluid-container RSVP-holder">
                         {members.length && members.map((u, i) => {
                             return <RsvpForm key={i} user={u} foodSelection={u.foodSelection} attending={u.attending} allergies={u.allergies} songRequest={u.songRequests} />
                         })
