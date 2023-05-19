@@ -31,7 +31,7 @@ export async function getServerSideProps (ctx) {
             // parse the current user
             const parsedUser = JSON.parse(user);
 
-            if(!parsedUser) {
+            if(!parsedUser || !parsedUser._id) {
                 return {
                     redirect: {
                         destination: '/login',
@@ -66,7 +66,20 @@ export async function getServerSideProps (ctx) {
     }
 }
 
-export default function App (props) {
+const blankUser = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    party: [],
+    role: 'user',
+    foodSelection: '',
+    allergies: '',
+    songRequests: '',
+    attending: false
+}
+
+export default function App ({user=blankUser, users, parties, party}) {
+
 
     return (
         <>
@@ -74,11 +87,11 @@ export default function App (props) {
             <title>Chris&Jody 2023 | RSVP</title>
         </Head>
         <div className="container">
-            <Navigation user={props.user} />
+            <Navigation user={user} />
             <main className="container-full App">
-                {props.user.role === "user" ?
-                    <UserDashboard user={props.user} party={props.party}  /> :
-                    <AdminDashboard user={props.user} users={props.users} parties={props.parties}  />
+                {user.role === "user" ?
+                    <UserDashboard user={user} party={party}  /> :
+                    <AdminDashboard user={user} users={users} parties={parties}  />
                 }
             </main>
         </div>

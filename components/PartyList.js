@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-export default function PartyList ({parties}) {
+export default function PartyList ({parties=null}) {
     return (
         <div className="container">
             <article className="toolbar">
@@ -23,7 +23,7 @@ export default function PartyList ({parties}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {parties.map((party, index) => (
+                    {parties && parties.map((party, index) => (
                         <tr key={index}>
                             <td>{party.name}</td>
                             <td>{party.inviteCode}</td>

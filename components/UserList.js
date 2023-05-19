@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import UserSearchBar from './UserSearchBar';
 
-export default function UserList ({users, handleSearch}) {
+export default function UserList ({users=null, handleSearch}) {
     return (
         <div className="container">
             <article className="toolbar">
@@ -31,7 +31,7 @@ export default function UserList ({users, handleSearch}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user, index) => (
+                    {users && users.map((user, index) => (
                         <tr key={index}>
                             <td>{user.attending ? "yes" : 'no'}</td>
                             <td>{user.firstName}</td>

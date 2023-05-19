@@ -2,6 +2,7 @@
 import capitalize from '../../lib/capitalize.js';
 import RsvpForm from '../../components/RsvpForm.js';
 import {useEffect, useState} from 'react';
+import { redirect } from 'next/navigation';
 
 export default function UserDashboard (props) {
 
@@ -27,20 +28,22 @@ export default function UserDashboard (props) {
         }
     }
 
-    return(
-        <div className="container">
-            <section>
-                <h1>Hello, {capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h1>
-                <h2>Party of {props.user.party.users.length}</h2>
-            </section>
-            <section className="container">
-                <article className="fluid-container">
-                    {members.length && members.map((u, i) => {
-                        return <RsvpForm key={i} user={u} foodSelection={u.foodSelection} attending={u.attending} allergies={u.allergies} songRequest={u.songRequests} />
-                    })
-                    }
-                </article>
-            </section>
-        </div>
-    )
+    if(props.user){
+        return(
+            <div className="container">
+                <section>
+                    <h1>Hello, {capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h1>
+                    <h2>Party of {props.user.party.users.length}</h2>
+                </section>
+                <section className="container">
+                    <article className="fluid-container">
+                        {members.length && members.map((u, i) => {
+                            return <RsvpForm key={i} user={u} foodSelection={u.foodSelection} attending={u.attending} allergies={u.allergies} songRequest={u.songRequests} />
+                        })
+                        }
+                    </article>
+                </section>
+            </div>
+        )
+    }
 }
