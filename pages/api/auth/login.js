@@ -30,17 +30,20 @@ export default async function handler (req, res) {
                             color: user.color,
                             role: user.role
                         }
+                        const now = new Date().getTime();
                         // set secure cookies on client
                         const cookies = new Cookies(req, res);
                         cookies.set('user', JSON.stringify(userInfo), {
                             httpOnly: true,
                             sameSite: 'strict',
-                            maxAge: 60 * 60 * 24 * 7,
+                            expires: new Date(now + (60 * 60 * 24) ),
+                            // maxAge: 60 * 60 * 24 * 7,
                         })
                         cookies.set('session', 'true', {
                             httpOnly: true,
                             sameSite: 'strict',
-                            maxAge: 60 * 60 * 24 * 7,
+                            expires: new Date(now + (60 * 60 * 24) ),
+                            // maxAge: 60 * 60 * 24 * 7,
                         })
                         const response = new Response(200, 'success', userInfo);
                         res.status(response.status).json(response);

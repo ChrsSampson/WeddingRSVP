@@ -3,6 +3,7 @@ import capitalize from '../../lib/capitalize.js';
 import RsvpForm from '../../components/RsvpForm.js';
 import {useEffect, useState} from 'react';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
 export default function UserDashboard (props) {
 
@@ -17,7 +18,7 @@ export default function UserDashboard (props) {
             const m = [];
             for(let u of props.user.party.users){
                 fetch(`/api/users/${u}`, {
-                    method: 'GET'                    
+                    method: 'GET'
                 })
                 .then(res => res.json())
                 .then(data => {
@@ -28,7 +29,7 @@ export default function UserDashboard (props) {
         }
     }
 
-  
+
 
     if(props.user){
         return(
@@ -45,6 +46,14 @@ export default function UserDashboard (props) {
                         }
                     </article>
                 </section>
+                <footer className="column">
+                    <sub>
+                        *Something not look right? <Link className="Link" href="mailto:csamposn@gmail.com">Please contact the bride or groom to update your party.</Link>
+                    </sub>
+                    <sub>
+                        **Avatars are randomly generated and do not represent the actual person (I just think they are neet)
+                    </sub>
+                </footer>
             </div>
         )
     }

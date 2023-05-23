@@ -17,16 +17,17 @@ export default function AdminDashboard (props) {
 
         if(!searchTerm || searchTerm === '' || searchTerm === null) {
             setFilteredUsers(props.users)
+        } else {
+
+            const newResult = filteredUsers.filter(user => {
+                if( user.firstName.toLowerCase().includes(searchTerm) ||
+                    user.lastName.toLowerCase().includes(searchTerm) ) {
+                        return true
+                }
+            })
+
+            setFilteredUsers(newResult)
         }
-
-        const newResult = filteredUsers.filter(user => {
-            if( user.firstName.toLowerCase().includes(searchTerm) ||
-                user.lastName.toLowerCase().includes(searchTerm) ) {
-                    return true
-            }
-        })
-
-        setFilteredUsers(newResult)
     }
 
     function tabController () {
@@ -42,7 +43,7 @@ export default function AdminDashboard (props) {
                 // default to users
                 return <UserList users={props.users === filteredUsers ? props.users : filteredUsers} handleSearch={handleSearch} />
         }
-            
+
     }
 
     return(

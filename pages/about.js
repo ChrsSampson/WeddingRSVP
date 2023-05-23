@@ -3,6 +3,8 @@ import Head from  'next/head';
 import Navigation from '../components/Navigation';
 import {useEffect, useState} from 'react';
 import {FiPlusSquare, FiMinusSquare, FiCalendar, FiFeather, FiBook, FiBriefcase} from 'react-icons/fi';
+import {MdOutlineRestaurantMenu} from 'react-icons/md';
+import {IoBus} from 'react-icons/io5';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -20,7 +22,7 @@ export default function About () {
         window.addEventListener('resize', checkWidth);
     }, [menu]);
 
-    
+
 
     return (
         <div>
@@ -35,7 +37,7 @@ export default function About () {
                 <Navigation light />
                 <h2 style={{textAlign: 'center'}}>About</h2>
                 <section className="Home-hero container About-page">
-                    
+
                     <section className="TOC-Container">
                         <div className="TOC-header">
                             <h4>
@@ -43,7 +45,6 @@ export default function About () {
                             </h4>
                             <button className="TOC-button" onClick={() => setMenu(!menu)}>{menu ? <FiMinusSquare /> : <FiPlusSquare />}</button>
                         </div>
-                        
                         {
                             menu && <>
                             <div className="divider" />
@@ -53,8 +54,16 @@ export default function About () {
                                     <Link href="#plan">The Plan</Link>
                                 </li>
                                 <li>
+                                    <IoBus />
+                                    <Link href="#transportation">Transportation</Link>
+                                </li>
+                                <li>
                                     <FiBriefcase />
                                     <Link href="#hotel">Hotel Discounts</Link>
+                                </li>
+                                <li>
+                                    <MdOutlineRestaurantMenu />
+                                    <Link href="#Food">Food</Link>
                                 </li>
                                 <li>
                                     <FiBook />
@@ -88,8 +97,14 @@ export default function About () {
                                 11:00pm - Reception Ends
                             </p>
                         </article>
+                        <article id="transportation" className="About-section">
+                            <h2>Transportation</h2>
+                            <div className='divider' />
+                            <p>A shuttle will be arriving at Wilder Room at 3pm. Once partially full it will go to St. Josephs park and drop people off. The shuttle will continue making rounds with the last trip departing Wilder Room at 3:40pm. </p>
+                        </article>
                         <article id="hotel" className="About-section">
                             <h2>Hotel Discount</h2>
+                            <div className='divider' />
                                 <div className='column'>
                                     <p>
                                         We have a social room discounted rate at the <Link href="https://www.marriott.com/events/start.mi?id=1621446366104&key=CORP">Courtyard by Marriott</Link>. There is also a discount for AAA members. ( Those probably don&apos;t stack but you can try! )
@@ -131,8 +146,33 @@ export default function About () {
                                     </sub>
                                 </div>
                         </article>
+                        <article id="Food" className="About-section">
+                            <h2>Food</h2>
+                            <div className="divider" />
+                            <div>
+                                <h3>Plates</h3>
+                                <p>
+                                    We will be serving a plated dinner with a choice of three entrees. Please let us know your choice along with any dietary restrictions in your <Link href="/app">RSVP</Link>.
+                                </p>
+                            </div>
+                            <div className="About-Food">
+                                <div>
+                                    <h3>6oz. Filet Mignon</h3>
+                                    <p>with Broccoli Rabe, Crispy Fingerling Potatoes, Black Truffle Aioli, Red Wine Sauce</p>
+                                </div>
+                                <div>
+                                    <h3>Nine-Gem Korma</h3>
+                                    <p>Coconut Curry Lentils and Rice, Mixed Vegetables, Crispy Tofu, Beet Chutney,Cilantro</p>
+                                </div>
+                                <div>
+                                    <h3>Faroe Island Salmon</h3>
+                                    <p>with Coriander Creamed SwissC hard, Za&apos;atar Potatoes, Cauliflower, Avocado-Sweet Potato Dressing</p>
+                                </div>
+                            </div>
+                        </article>
                         <article id="Dress" className="About-section">
                             <h2>Dress Code</h2>
+                            <div className="divider" />
                             <h4> Formal Garden Party</h4>
                                    <p>
                                         For a formal garden party dress code, women should opt for elegant and refined attire that
@@ -166,12 +206,12 @@ export default function About () {
                                             <div className="color-square" style={{backgroundColor: "#374534" }} />
                                             <div className="color-square" style={{backgroundColor: "#9cb1c2" }} />
                                             <div className="color-square" style={{backgroundColor: "#577b91" }} />
-                                        </div> 
-                                   </div> 
+                                        </div>
+                                   </div>
                                    <div className="column">
                                         <sub>
                                             *Note: bridesmaids will be an Azazie desert rose
-                                        </sub> 
+                                        </sub>
                                         <sub>
                                             **Note: The floor at the ceremony venue is stone tile, we recommend against stilettos.
                                         </sub>
@@ -179,6 +219,7 @@ export default function About () {
                         </article>
                         <article id="registry" className="About-section">
                             <h2>Registry</h2>
+                            <div className="divider" />
                             <div className='column'>
                                 <p>
                                     As we start our new life together, we are excited to plan our dream honeymoon.
@@ -198,9 +239,9 @@ export default function About () {
                     {/* footer for bottom spacing */}
                     <footer style={{height: '5em', width: '100%'}} > </footer>
                 </section>
-                
+
             </section>
-            
+
         </div>
     )
 }

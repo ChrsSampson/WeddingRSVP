@@ -29,7 +29,7 @@
 }
 
 .TOC-Container{
-    max-height: 22em;
+    max-height: 28em;
     border: 1px solid $light-gray;
     border-radius:  .5em;
     padding: .5em;
@@ -58,7 +58,7 @@
             }
         }
     }
-    
+
 
     .TOC-button{
         @media screen and (min-width: 900px) {
@@ -100,7 +100,7 @@
             color: $wild-blue-yonder;
             font-weight: 600;
         }
-    }  
+    }
 
     @media screen and (max-width: 650px) {
         p{
@@ -119,7 +119,13 @@
         width: 4em;
         height: 4em;
         border-radius: .5em;
+
+        @media screen and (max-width: 500px) {
+            width: 2em;
+            height: 2em;
+        }
     }
+
 }
 
 .hotel-list{
@@ -149,12 +155,43 @@
     }
 }
 
+.About-Food{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    padding:0 1em;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid $light-gray;
+        border-radius: .5em;
+
+        h4{
+            margin-bottom: 0;
+        }
+
+        p{
+            font-size: 1em;
+            font-weight: 200;
+            text-align: left;
+            font-style: italic;
+        }
+    }
+
+    @media screen and (min-width: 900px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: .5em;
+    }
+}
+
 .qr-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    
+
     .qr-card{
         border: 2px solid $light-gray;
         background-color: $wild-blue-yonder;
