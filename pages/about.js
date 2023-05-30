@@ -101,6 +101,7 @@ export default function About () {
                             <h2>Transportation</h2>
                             <div className='divider' />
                             <p>A shuttle will be arriving at Wilder Room at 3pm. Once partially full it will go to St. Josephs park and drop people off. The shuttle will continue making rounds with the last trip departing Wilder Room at 3:40pm. </p>
+                            <p>The shuttle will resume again for the return trip back to the reception after the ceremony for one hour.</p>
                         </article>
                         <article id="hotel" className="About-section">
                             <h2>Hotel Discount</h2>
@@ -166,7 +167,7 @@ export default function About () {
                                 </div>
                                 <div>
                                     <h3>Faroe Island Salmon</h3>
-                                    <p>with Coriander Creamed SwissC hard, Za&apos;atar Potatoes, Cauliflower, Avocado-Sweet Potato Dressing</p>
+                                    <p>with Coriander Creamed SwissChard, Za&apos;atar Potatoes, Cauliflower, Avocado-Sweet Potato Dressing</p>
                                 </div>
                             </div>
                         </article>

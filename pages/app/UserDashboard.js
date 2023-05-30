@@ -37,6 +37,7 @@ export default function UserDashboard (props) {
                 <section>
                     <h1>Hello, {capitalize(props.user.firstName)} {capitalize(props.user.lastName)}</h1>
                     <h2>Party of {props.user.party.users.length}</h2>
+                    <h6><Link href="/about#Food">View Entrees</Link></h6>
                 </section>
                 <section className="container">
                     <article className="fluid-container RSVP-holder">
