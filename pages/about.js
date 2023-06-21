@@ -36,6 +36,7 @@ export default function About () {
             <section className="container fade">
                 <Navigation light />
                 <h2 style={{textAlign: 'center'}}>About</h2>
+                    <h4 style={{textAlign: 'center', color: "#576587", fontWeight: 'bold'}}>RSVPs are due by July 1</h4>
                 <section className="Home-hero container About-page">
 
                     <section className="TOC-Container">
@@ -100,8 +101,21 @@ export default function About () {
                         <article id="transportation" className="About-section">
                             <h2>Transportation</h2>
                             <div className='divider' />
-                            <p>A shuttle will be arriving at Wilder Room at 3pm. Once partially full it will go to St. Josephs park and drop people off. The shuttle will continue making rounds with the last trip departing Wilder Room at 3:40pm. </p>
-                            <p>The shuttle will resume again for the return trip back to the reception after the ceremony for one hour.</p>
+                            <p>We are hoping you will take advantage of our shuttle service and have the convenience of only parking your car once.</p>
+                            <p>
+                                Located directly next door to the reception venue The Wilder Room East End Parking Garage.
+                                475 East Main Street, Rochester, NY 1460. It is our intent that guests park at this garage as our
+                                shuttle will be leaving the reception venue to go to the ceremony venue.
+                            </p>
+                            <p>
+                                The shuttle will be arriving at Wilder room at 3pm. Once partially full it will go to St. Josephs park
+                                and drop people off. The shuttle will continue making rounds with the last trip to St. Josephs
+                                Park departing at 3:40pm.
+                            </p>
+                            <p>
+                                After the ceremony the shuttle will be available to transport guests back to the cocktail hour at
+                                Wilder Room.
+                            </p>
                         </article>
                         <article id="hotel" className="About-section">
                             <h2>Hotel Discount</h2>
