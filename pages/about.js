@@ -140,15 +140,16 @@ export default function About() {
                                 to go to the ceremony venue.
                             </p>
                             <p>
-                                The Shuttle will arrive at the{" "}
+                                The Shuttle first shuttle will arrive at the{" "}
                                 <strong>
                                     corner of Swan Street and East Avenue{" "}
                                 </strong>
-                                {`(The Shuttle says "S&S" on the side)`}. Once
-                                partially full it will go to St. Josephs park
-                                and drop people off. The shuttle will continue
-                                making rounds with the last trip to St. Josephs
-                                Park departing at 3:40pm.
+                                {`(The Shuttle says "S&S" on the side)`} and the
+                                first trip will be at 3:15pm. Once partially
+                                full it will go to St. Josephs park and drop
+                                people off. The shuttle will continue making
+                                rounds with the last trip to St. Josephs Park
+                                departing at 3:40pm.
                             </p>
                             <p>
                                 After the ceremony the shuttle will be available
